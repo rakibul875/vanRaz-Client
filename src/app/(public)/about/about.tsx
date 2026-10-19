@@ -16,16 +16,12 @@ import {
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-slate-50/50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
-      {/* =========================
-          HERO SECTION
-      ========================= */}
       <section className="relative overflow-hidden border-b border-purple-100/60 dark:border-purple-950/40 bg-gradient-to-br from-purple-50/80 via-white to-purple-50/30 dark:from-slate-900 dark:via-purple-950/20 dark:to-slate-950 pb-20 pt-28">
         <div className="absolute -left-20 top-20 h-72 w-72 rounded-full bg-purple-200/30 dark:bg-purple-900/10 blur-3xl pointer-events-none" />
         <div className="absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-purple-300/20 dark:bg-purple-800/10 blur-3xl pointer-events-none" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
-            {/* Left Content */}
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-purple-200/60 dark:border-purple-800/60 bg-purple-50 dark:bg-purple-950/50 px-4 py-2 text-xs font-bold uppercase tracking-wider text-purple-700 dark:text-purple-300 shadow-sm">
                 <ShoppingBag className="h-4 w-4" />
@@ -63,7 +59,6 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Right Visual */}
             <div className="relative">
               <div className="relative mx-auto max-w-md">
                 <div className="absolute -right-6 -top-6 h-32 w-32 rounded-full bg-purple-200/40 dark:bg-purple-900/20 blur-2xl pointer-events-none" />
@@ -110,13 +105,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* =========================
-          OUR STORY
-      ========================= */}
       <section className="py-20 bg-white dark:bg-slate-950 transition-colors duration-300">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
-            {/* Visual Grid */}
             <div className="relative order-2 lg:order-1">
               <div className="rounded-3xl border border-purple-100/80 dark:border-purple-950/60 bg-gradient-to-b from-purple-50/40 to-white dark:from-purple-950/20 dark:to-slate-900 p-6 sm:p-10 shadow-sm">
                 <div className="grid grid-cols-2 gap-5">
@@ -171,7 +162,6 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Content */}
             <div className="order-1 lg:order-2">
               <p className="text-xs font-extrabold uppercase tracking-widest text-purple-600 dark:text-purple-400">
                 Our Story
@@ -230,9 +220,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* =========================
-          WHY CHOOSE US
-      ========================= */}
       <section className="bg-slate-100/60 dark:bg-slate-900/50 py-20 transition-colors duration-300">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
@@ -251,7 +238,6 @@ export default function AboutPage() {
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Card 1 */}
             <div className="rounded-2xl border border-purple-100/80 dark:border-purple-900/60 bg-white dark:bg-slate-900 p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-purple-200 dark:hover:border-purple-700 hover:shadow-xl hover:shadow-purple-600/5">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900">
                 <ShoppingBag className="h-6 w-6" />
@@ -267,7 +253,6 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Card 2 */}
             <div className="rounded-2xl border border-purple-100/80 dark:border-purple-900/60 bg-white dark:bg-slate-900 p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-purple-200 dark:hover:border-purple-700 hover:shadow-xl hover:shadow-purple-600/5">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900">
                 <ShieldCheck className="h-6 w-6" />
@@ -283,7 +268,6 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Card 3 */}
             <div className="rounded-2xl border border-purple-100/80 dark:border-purple-900/60 bg-white dark:bg-slate-900 p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-purple-200 dark:hover:border-purple-700 hover:shadow-xl hover:shadow-purple-600/5">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900">
                 <Truck className="h-6 w-6" />
@@ -299,7 +283,6 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Card 4 */}
             <div className="rounded-2xl border border-purple-100/80 dark:border-purple-900/60 bg-white dark:bg-slate-900 p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-purple-200 dark:hover:border-purple-700 hover:shadow-xl hover:shadow-purple-600/5">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900">
                 <Users className="h-6 w-6" />
@@ -318,9 +301,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* =========================
-          MISSION SECTION
-      ========================= */}
       <section className="py-20 bg-white dark:bg-slate-950 transition-colors duration-300">
         <div className="mx-auto max-w-5xl px-4 text-center sm:px-6">
           <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 dark:from-purple-950 dark:via-purple-900 dark:to-slate-950 px-6 py-16 text-white shadow-xl shadow-purple-900/10 sm:px-12">
@@ -349,9 +329,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* =========================
-          CTA SECTION
-      ========================= */}
       <section className="border-t border-purple-100 dark:border-purple-950/60 py-16 bg-white dark:bg-slate-950 transition-colors duration-300">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white sm:text-4xl">
