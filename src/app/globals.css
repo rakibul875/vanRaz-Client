@@ -1,0 +1,127 @@
+@import "tailwindcss";
+@tailwind utilities;
+/* @import "@heroui/styles"; */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: #ff594d;
+  --color-primary-foreground: #ffffff;
+  --color-card: var(--background);
+  --color-muted: #f4f4f5;
+  --color-muted-foreground: #71717a;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Swiper Pagination */
+
+.swiper-pagination {
+  position: absolute;
+  top: 0% !important;
+  left: unset !important;
+  right: 66px !important;
+  width: 30px !important;
+  z-index: 2;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  transform: translateY(-50%);
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .swiper-pagination {
+    display: none;
+  }
+}
+
+.swiper-pagination-bullets .swiper-pagination-bullet {
+  display: inline-block;
+  --swiper-pagination-bullet-size: 12px;
+  --swiper-pagination-bullet-horizontal-gap: 8px;
+  margin: 5px 4px;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #fff;
+  color: var(--white-color);
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+
+.swiper-pagination-bullets
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: #ff594d;
+  border-color: #ff594d;
+  transform: scale(1.9);
+}
+
+.testimonial-pagination {
+  .swiper-pagination-bullet {
+    background-color: #0a0a0a;
+  }
+}
+
+@layer base {
+  /* Smooth transition effect for all color and background changes */
+  *,
+  ::before,
+  ::after {
+    @apply transition-colors duration-300 ease-in-out;
+  }
+}
+
+/* Optional custom scrollbar to match dark/light theme */
+html {
+  color-scheme: light dark;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
