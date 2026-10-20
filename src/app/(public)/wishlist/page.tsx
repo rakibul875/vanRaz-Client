@@ -19,8 +19,12 @@ export default function WishlistPage() {
   const { data: session } = useSession();
   const token = session?.session?.token;
   const { addToCart } = useCart();
-  const { items: wishlist, loading, pendingId, removeFromWishlist } =
-    useWishlist();
+  const {
+    items: wishlist,
+    loading,
+    pendingId,
+    removeFromWishlist,
+  } = useWishlist();
 
   const handleRemove = (productId: string) => {
     void removeFromWishlist(productId);
@@ -55,7 +59,6 @@ export default function WishlistPage() {
   return (
     <div className="min-h-screen bg-[#fcfdfd] pb-16 pt-10 md:pt-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
           <div>
             <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-[#ff594d]/10 px-3 py-1 text-xs font-bold text-[#ff594d]">
@@ -85,7 +88,6 @@ export default function WishlistPage() {
           </Link>
         </div>
 
-        {/* Not Signed In */}
         {!token && (
           <div className="flex flex-col items-center gap-4 rounded-2xl border border-dashed border-slate-200 bg-white px-8 py-16 text-center">
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#ff594d]/10">
@@ -111,7 +113,6 @@ export default function WishlistPage() {
           </div>
         )}
 
-        {/* Loading */}
         {token && loading && (
           <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-slate-200 bg-white px-8 py-16 text-slate-500">
             <Loader2 className="h-8 w-8 animate-spin text-[#ff594d]" />
@@ -119,7 +120,6 @@ export default function WishlistPage() {
           </div>
         )}
 
-        {/* Products */}
         {token && !loading && wishlist.length > 0 && (
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {wishlist.map((item) => {
@@ -136,7 +136,6 @@ export default function WishlistPage() {
                   className="group relative overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#ff594d]/30 hover:shadow-xl"
                 >
                   <div className="relative p-4">
-                    {/* Image */}
                     <Link
                       href={`/products/${item._id}`}
                       className="relative mb-4 block flex h-44 items-center justify-center overflow-hidden rounded-xl bg-[#f3f6f5]"
@@ -159,7 +158,6 @@ export default function WishlistPage() {
                         </span>
                       )}
 
-                      {/* Remove */}
                       <button
                         type="button"
                         aria-label="Remove from wishlist"
@@ -178,7 +176,6 @@ export default function WishlistPage() {
                         )}
                       </button>
 
-                      {/* Stock Badge */}
                       <div className="absolute left-3 top-3">
                         {available ? (
                           <span className="rounded-full bg-emerald-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-lg shadow-emerald-500/20">
@@ -191,7 +188,6 @@ export default function WishlistPage() {
                         )}
                       </div>
 
-                      {/* Discount Badge */}
                       {hasDiscount && (
                         <span className="absolute bottom-3 left-3 rounded-full bg-[#ff594d] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
                           -{item.discount}% OFF
@@ -199,7 +195,6 @@ export default function WishlistPage() {
                       )}
                     </Link>
 
-                    {/* Info */}
                     <div className="space-y-2">
                       <p className="text-[10px] font-bold uppercase tracking-widest text-[#ff594d]">
                         {item.brand || "VenRaz"}
@@ -229,7 +224,6 @@ export default function WishlistPage() {
                       </div>
                     </div>
 
-                    {/* Actions */}
                     <div className="mt-5 flex gap-2">
                       <button
                         type="button"
@@ -248,7 +242,6 @@ export default function WishlistPage() {
           </div>
         )}
 
-        {/* Empty State */}
         {token && !loading && wishlist.length === 0 && (
           <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-slate-200 bg-white px-8 py-16 text-center">
             <Heart className="h-10 w-10 text-slate-300" />
