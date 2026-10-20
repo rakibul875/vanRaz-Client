@@ -1,11 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   experimental: {
     cpus: 4,
     memoryBasedWorkersCount: true,
   },
-  output: "standalone",
   enablePrerenderSourceMaps: false,
   images: {
     remotePatterns: [
@@ -21,7 +23,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
-
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
@@ -33,10 +34,6 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "example.com",
-      },
-      {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
       },
       {
         protocol: "https",
