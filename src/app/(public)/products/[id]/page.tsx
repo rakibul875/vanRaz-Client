@@ -181,7 +181,6 @@ export default function ProductDetailsPage({
   return (
     <main className="min-h-screen bg-[#FAF5FF] dark:bg-[#0b1325] pt-10 pb-16 text-gray-900">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb Back Link */}
         <div className="mb-6">
           <Link
             href="/products"
@@ -193,7 +192,6 @@ export default function ProductDetailsPage({
         </div>
 
         <div className="grid grid-cols-1 gap-12 rounded-3xl border border-purple-100 bg-white p-6 shadow-sm sm:p-10 lg:grid-cols-2">
-          {/* Gallery Image */}
           <div className="flex flex-col items-center">
             <div className="relative aspect-square max-h-[500px] w-full max-w-[500px] overflow-hidden rounded-2xl border border-purple-100 bg-purple-50/30 p-8 flex items-center justify-center">
               <Image
@@ -207,10 +205,8 @@ export default function ProductDetailsPage({
             </div>
           </div>
 
-          {/* Product Info */}
           <div className="flex flex-col justify-between">
             <div>
-              {/* Category & Brand */}
               <div className="mb-3 flex items-center justify-between gap-4">
                 <span className="rounded-full bg-purple-50 px-3 py-1 text-xs font-semibold tracking-wider text-purple-700 uppercase">
                   {product.brand || "VenRaz Original"}
@@ -224,12 +220,10 @@ export default function ProductDetailsPage({
                 </div>
               </div>
 
-              {/* Title */}
               <h1 className="mb-4 text-2xl font-extrabold leading-snug text-gray-900 sm:text-3xl">
                 {product.name}
               </h1>
 
-              {/* Price */}
               <div className="mb-6 flex items-baseline gap-4">
                 <span className="text-3xl font-black text-purple-600 sm:text-4xl">
                   ${finalPrice.toFixed(2)}
@@ -250,13 +244,11 @@ export default function ProductDetailsPage({
                 </span>
               </div>
 
-              {/* Description */}
               <p className="mb-8 border-t border-purple-100 pt-6 text-xs sm:text-sm leading-relaxed text-gray-600">
                 {product.description ||
                   "No description provided for this product."}
               </p>
 
-              {/* Trust Badges */}
               <div className="mb-8 grid grid-cols-3 gap-3 border-y border-purple-100 py-5 text-center">
                 <div className="flex flex-col items-center">
                   <Truck className="mb-1 h-5 w-5 text-purple-600" />
@@ -279,9 +271,7 @@ export default function ProductDetailsPage({
               </div>
             </div>
 
-            {/* Quantity & Actions */}
             <div className="space-y-4">
-              {/* Quantity Control */}
               <div className="flex w-fit items-center overflow-hidden rounded-xl border border-purple-100 bg-purple-50/30">
                 <button
                   type="button"
@@ -307,7 +297,6 @@ export default function ProductDetailsPage({
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row">
-                {/* Add to Cart Button */}
                 <button
                   type="button"
                   onClick={handleAddToCart}
@@ -335,7 +324,6 @@ export default function ProductDetailsPage({
                   )}
                 </button>
 
-                {/* Buy Now Button */}
                 <button
                   type="button"
                   onClick={handleBuyNow}
@@ -374,7 +362,6 @@ export default function ProductDetailsPage({
           </div>
         </div>
 
-        {/* Customer Reviews + Related Products */}
         <ReviewsSection
           productId={product._id}
           initialRating={product.rating}
