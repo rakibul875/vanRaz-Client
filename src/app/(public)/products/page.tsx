@@ -54,11 +54,9 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
     typeof params?.maxPrice === "string" ? params.maxPrice.trim() : "";
   const sort = typeof params?.sort === "string" ? params.sort.trim() : "";
 
-  // URL parameters dynamic handle
   const page = Math.max(1, parseInt(params?.page || "1", 10));
-  const limit = 12; // Per page 12 products
+  const limit = 12;
 
-  // Backend API Calls (server-side)
   const [categories, { products = [], totalPages = 1, totalProducts = 0 }] =
     await Promise.all([
       getCategories(),
@@ -73,14 +71,12 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
       }),
     ]);
 
-  // Display name for the selected category
   const selectedCategoryName =
     categories.find((c: Category) => c._id === category || c.slug === category)
       ?.name || category;
 
   const isFiltered = Boolean(search || category || minPrice || maxPrice);
 
-  // Build the shared query object for pagination links
   const buildQuery = (nextPage: number) => ({
     ...(search && { search }),
     ...(category && { category }),
@@ -90,7 +86,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
     page: nextPage,
   });
 
-  // Dynamic 4-Page Window Calculation
   const maxButtons = 4;
   let startPage = Math.max(1, page - Math.floor(maxButtons / 2));
   let endPage = startPage + maxButtons - 1;
@@ -108,7 +103,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-slate-50/50 dark:bg-slate-950 pt-6 pb-16 text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <main className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-16">
-        {/* Header Banner */}
         <div className="mb-8 rounded-2xl border border-purple-100 dark:border-purple-900/60 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-sm transition-colors duration-300">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             Our Products
@@ -119,14 +113,12 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
           </p>
         </div>
 
-        {/* Search & Filter Form */}
         <form
           action="/products"
           method="GET"
           className="mb-8 rounded-2xl border border-purple-100 dark:border-purple-900/60 bg-white dark:bg-slate-900 p-5 shadow-sm transition-colors duration-300"
         >
           <div className="flex flex-wrap items-center gap-3">
-            {/* Search Input */}
             <input
               type="text"
               name="search"
@@ -135,7 +127,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
               className="min-w-[200px] flex-1 rounded-xl border border-purple-100 dark:border-purple-900/60 bg-purple-50/30 dark:bg-slate-950/50 px-4 py-2.5 text-xs text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 outline-none transition focus:border-purple-300 dark:focus:border-purple-600 focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-purple-600/20"
             />
 
-            {/* Category Select */}
             <select
               name="category"
               defaultValue={category}
@@ -158,7 +149,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
               ))}
             </select>
 
-            {/* Price Range */}
             <input
               type="number"
               name="minPrice"
@@ -176,7 +166,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
               className="w-32 rounded-xl border border-purple-100 dark:border-purple-900/60 bg-purple-50/30 dark:bg-slate-950/50 px-4 py-2.5 text-xs text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 outline-none transition focus:border-purple-300 dark:focus:border-purple-600 focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-purple-600/20"
             />
 
-            {/* Sort */}
             <select
               name="sort"
               defaultValue={sort}
@@ -202,7 +191,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
               </option>
             </select>
 
-            {/* Search Submit Button */}
             <button
               type="submit"
               className="inline-flex items-center gap-2 rounded-xl bg-purple-600 dark:bg-purple-700 px-5 py-2.5 text-xs font-semibold text-white transition-all duration-150 hover:bg-purple-700 dark:hover:bg-purple-600 shadow-sm shadow-purple-600/20"
@@ -211,7 +199,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
               Search
             </button>
 
-            {/* Clear Button */}
             {isFiltered && (
               <Link
                 href="/products"
@@ -231,7 +218,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
           )}
         </form>
 
-        {/* Product Count Info */}
         {products.length > 0 && (
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-purple-100/60 dark:border-purple-950/60 pb-4">
             <h2 className="text-lg font-bold text-gray-900 dark:text-white">
@@ -248,7 +234,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
           </div>
         )}
 
-        {/* Products Grid */}
         {products.length > 0 ? (
           <>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -257,10 +242,8 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
               ))}
             </div>
 
-            {/* Pagination Controls */}
             {totalPages > 1 && (
               <div className="mt-12 flex items-center justify-center gap-2">
-                {/* Previous Button */}
                 <Link
                   href={{
                     pathname: "/products",
@@ -275,7 +258,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
                   Prev
                 </Link>
 
-                {/* Visible Page Buttons */}
                 {visiblePages.map((pNum) => (
                   <Link
                     key={pNum}
@@ -293,7 +275,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
                   </Link>
                 ))}
 
-                {/* Next Button */}
                 <Link
                   href={{
                     pathname: "/products",
@@ -313,7 +294,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
             )}
           </>
         ) : (
-          /* Empty State */
           <div className="flex flex-col items-center justify-center rounded-2xl border border-purple-100 dark:border-purple-900/60 bg-white dark:bg-slate-900 px-6 py-20 text-center shadow-sm transition-colors duration-300">
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900">
               <ShoppingBag className="h-8 w-8 stroke-1 fill-purple-600/10 dark:fill-purple-400/10" />
