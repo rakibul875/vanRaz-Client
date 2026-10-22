@@ -86,7 +86,6 @@ export default function ShopDetailPage() {
   return (
     <main className="min-h-screen bg-gray-50 py-10 md:py-16 md:mt-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Back link */}
         <Link
           href="/shop"
           className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-500 hover:text-purple-600 transition-colors mb-6"
@@ -95,7 +94,6 @@ export default function ShopDetailPage() {
           Back to All Products
         </Link>
 
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
             Shop Products
@@ -105,7 +103,6 @@ export default function ShopDetailPage() {
           </p>
         </div>
 
-        {/* Products Grid / States */}
         {loading ? (
           <ProductGridSkeleton count={8} />
         ) : products.length === 0 ? (
@@ -127,7 +124,6 @@ export default function ShopDetailPage() {
                   key={product._id}
                   className="group bg-white rounded-2xl border border-purple-100 hover:border-purple-200 overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col"
                 >
-                  {/* Product Image */}
                   <div className="relative h-80 bg-purple-50/30 flex items-center justify-center p-4 overflow-hidden">
                     <Image
                       src={product.images?.[0] || "/placeholder.svg"}
@@ -143,7 +139,6 @@ export default function ShopDetailPage() {
                     )}
                   </div>
 
-                  {/* Card Body */}
                   <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                     <div className="space-y-1.5">
                       <div className="flex items-center justify-between text-xs">
@@ -162,7 +157,6 @@ export default function ShopDetailPage() {
                       </Link>
                     </div>
 
-                    {/* Price and Add to Cart CTA */}
                     <div className="pt-3 border-t border-purple-50 flex items-center justify-between gap-3">
                       <div>
                         <span className="text-base font-black text-gray-900">
