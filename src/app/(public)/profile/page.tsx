@@ -30,13 +30,11 @@ export default function ProfilePage() {
     "personal",
   );
 
-  // Personal info form
   const [displayName, setDisplayName] = useState(user?.name || "");
   const [savingName, setSavingName] = useState(false);
   const [nameSuccess, setNameSuccess] = useState(false);
   const [nameError, setNameError] = useState("");
 
-  // Password form
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
@@ -147,7 +145,6 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-[#FAF9F6]">
       <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
-        {/* Back Link */}
         <Link
           href="/"
           className="group mb-8 inline-flex items-center gap-2 text-sm font-medium text-[#6B7268] transition-colors hover:text-[#0E1B1B]"
@@ -159,15 +156,12 @@ export default function ProfilePage() {
           Back to shop
         </Link>
 
-        {/* Profile Header Card */}
         <div className="relative mb-8 overflow-hidden rounded-2xl border border-[#DEDACE] bg-white shadow-sm">
-          {/* Banner accent */}
           <div className="h-28 bg-gradient-to-r from-[#0E1B1B] via-[#1a3330] to-[#0E1B1B]">
             <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#C08A3E]/10 blur-3xl" />
           </div>
 
           <div className="relative -mt-14 px-6 pb-6 sm:px-8">
-            {/* Avatar */}
             <div className="relative mb-4 inline-block">
               <div className="flex h-28 w-28 items-center justify-center rounded-full border-4 border-white bg-[#0E1B1B] text-3xl font-bold text-white shadow-lg">
                 {initial}
@@ -181,7 +175,6 @@ export default function ProfilePage() {
               </button>
             </div>
 
-            {/* Info */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h1 className="text-2xl font-bold tracking-tight text-[#0E1B1B]">
@@ -214,7 +207,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Tabs */}
         <div className="mb-6 flex gap-1 rounded-xl border border-[#DEDACE] bg-white p-1 shadow-sm">
           {(
             [
@@ -241,10 +233,8 @@ export default function ProfilePage() {
           })}
         </div>
 
-        {/* Personal Information Tab */}
         {activeTab === "personal" && (
           <div className="space-y-6">
-            {/* Name Form */}
             <form
               onSubmit={handleSaveName}
               className="rounded-2xl border border-[#DEDACE] bg-white p-6 shadow-sm sm:p-8"
@@ -271,7 +261,6 @@ export default function ProfilePage() {
               )}
 
               <div className="space-y-5">
-                {/* Display Name */}
                 <div>
                   <label
                     htmlFor="profile-name"
@@ -294,7 +283,6 @@ export default function ProfilePage() {
                   </div>
                 </div>
 
-                {/* Email (read-only) */}
                 <div>
                   <label
                     htmlFor="profile-email"
@@ -332,7 +320,6 @@ export default function ProfilePage() {
               </div>
             </form>
 
-            {/* Account Stats */}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               {[
                 {
@@ -367,7 +354,6 @@ export default function ProfilePage() {
           </div>
         )}
 
-        {/* Security Tab */}
         {activeTab === "security" && (
           <div className="rounded-2xl border border-[#DEDACE] bg-white p-6 shadow-sm sm:p-8">
             <h2 className="mb-1 text-lg font-bold text-[#0E1B1B]">
@@ -393,7 +379,6 @@ export default function ProfilePage() {
             )}
 
             <form onSubmit={handleChangePassword} className="space-y-5">
-              {/* Current Password */}
               <div>
                 <label
                   htmlFor="current-password"
@@ -425,7 +410,6 @@ export default function ProfilePage() {
                 </div>
               </div>
 
-              {/* New Password */}
               <div>
                 <label
                   htmlFor="new-password"
@@ -462,7 +446,6 @@ export default function ProfilePage() {
                 )}
               </div>
 
-              {/* Confirm New Password */}
               <div>
                 <label
                   htmlFor="confirm-new-password"
