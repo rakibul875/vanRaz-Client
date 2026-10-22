@@ -3,12 +3,7 @@
 import React, { Suspense, useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import {
-  Search,
-  Package,
-  Check,
-  ArrowLeft,
-} from "lucide-react";
+import { Search, Package, Check, ArrowLeft } from "lucide-react";
 
 type OrderStatus =
   | "Pending"
@@ -143,9 +138,7 @@ function TrackingContent() {
       );
 
       if (!res.ok) {
-        setError(
-          `No order found with tracking ID: ${value}.`,
-        );
+        setError(`No order found with tracking ID: ${value}.`);
         return;
       }
 
@@ -202,7 +195,6 @@ function TrackingContent() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10">
-      {/* Back Link */}
       <div className="mb-6">
         <Link
           href="/shop"
@@ -213,7 +205,6 @@ function TrackingContent() {
         </Link>
       </div>
 
-      {/* Header */}
       <div className="text-center max-w-xl mx-auto mb-10">
         <div className="w-16 h-16 bg-red-50 text-[#ff594d] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
           <Package className="w-8 h-8" />
@@ -222,11 +213,14 @@ function TrackingContent() {
           Track Your Order
         </h1>
         <p className="text-xs sm:text-sm text-slate-500">
-          Enter your Tracking ID or Order ID below to get real-time delivery status updates.
+          Enter your Tracking ID or Order ID below to get real-time delivery
+          status updates.
         </p>
 
-        {/* Input Form */}
-        <form onSubmit={handleSubmit} className="mt-6 flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-6 flex flex-col sm:flex-row gap-2 max-w-md mx-auto"
+        >
           <div className="relative flex-1">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
@@ -251,10 +245,8 @@ function TrackingContent() {
         )}
       </div>
 
-      {/* Order Status Display */}
       {activeOrder && (
         <div className="space-y-6">
-          {/* Summary Card */}
           <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 pb-5">
               <div>
@@ -266,7 +258,9 @@ function TrackingContent() {
                 </h3>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-slate-500">Status:</span>
+                <span className="text-xs font-semibold text-slate-500">
+                  Status:
+                </span>
                 <span className="bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full border border-emerald-200">
                   {activeOrder.status}
                 </span>
@@ -301,7 +295,6 @@ function TrackingContent() {
             </div>
           </div>
 
-          {/* Timeline Visual Status */}
           <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
             <h3 className="text-base font-bold text-slate-900 mb-8">
               Delivery Timeline Progress
@@ -312,8 +305,10 @@ function TrackingContent() {
                 const isCompleted = idx <= currentStatusIndex;
 
                 return (
-                  <div key={step.status} className="relative flex items-start gap-4">
-                    {/* Circle Node */}
+                  <div
+                    key={step.status}
+                    className="relative flex items-start gap-4"
+                  >
                     <div
                       className={`absolute -left-[27px] sm:-left-[31px] top-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs font-bold shadow-xs transition-colors ${
                         isCompleted
@@ -321,10 +316,13 @@ function TrackingContent() {
                           : "bg-white border-2 border-slate-300 text-slate-400"
                       }`}
                     >
-                      {isCompleted ? <Check className="w-3.5 h-3.5" /> : idx + 1}
+                      {isCompleted ? (
+                        <Check className="w-3.5 h-3.5" />
+                      ) : (
+                        idx + 1
+                      )}
                     </div>
 
-                    {/* Step details */}
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-baseline justify-between gap-2">
                         <h4
@@ -358,7 +356,13 @@ function TrackingContent() {
 export default function OrderTrackingPage() {
   return (
     <main className="min-h-screen bg-[#fcfdfd]">
-      <Suspense fallback={<div className="p-20 text-center text-slate-400">Loading tracking engine...</div>}>
+      <Suspense
+        fallback={
+          <div className="p-20 text-center text-slate-400">
+            Loading tracking engine...
+          </div>
+        }
+      >
         <TrackingContent />
       </Suspense>
     </main>
