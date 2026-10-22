@@ -18,7 +18,6 @@ import { CatalogProduct } from "@/lib/products/mockCatalog";
 
 const PRODUCTS_PER_PAGE = 12;
 
-// category can be a plain string, a populated { _id, name } object, or missing
 function getCategoryLabel(product: CatalogProduct): string {
   if (!product.category) return "";
   if (typeof product.category === "object") {
@@ -43,7 +42,6 @@ export default function ShopPage() {
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  // Categories list derived from fetched products
   const categories = useMemo(() => {
     const set = new Set<string>();
     for (const p of products) {
@@ -53,7 +51,6 @@ export default function ShopPage() {
     return ["All", ...Array.from(set)];
   }, [products]);
 
-  // Fetch all products once from the products API
   useEffect(() => {
     let cancelled = false;
 
@@ -70,7 +67,7 @@ export default function ShopPage() {
           }).finally(() => clearTimeout(timeoutId));
           if (res.ok) {
             const data = await res.json();
-            // console.log(data);
+
             const fetched = data?.data;
             if (Array.isArray(fetched) && !cancelled) {
               setProducts(fetched);
@@ -78,16 +75,8 @@ export default function ShopPage() {
             }
           }
         }
-
-        // Resilient Fallback to rich Mock Catalog
-        // if (!cancelled) {
-        //   setProducts(MOCK_PRODUCTS);
-        // }
       } catch (err) {
         console.warn("Shop backend API fallback triggered:", err);
-        // if (!cancelled) {
-        //   setProducts(MOCK_PRODUCTS);
-        // }
       } finally {
         if (!cancelled) {
           setLoading(false);
@@ -102,7 +91,6 @@ export default function ShopPage() {
     };
   }, [API_URL]);
 
-  // Client-side filter + sort
   const filteredProducts = useMemo(() => {
     let filtered = [...products];
 
@@ -144,7 +132,6 @@ export default function ShopPage() {
     } else if (sortBy === "popularity") {
       sorted.sort((a, b) => b.soldCount - a.soldCount);
     } else {
-      // latest (fall back to original order when createdAt is missing)
       sorted.sort((a, b) => {
         const timeA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
         const timeB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
@@ -178,11 +165,10 @@ export default function ShopPage() {
     (currentPage - 1) * PRODUCTS_PER_PAGE,
     currentPage * PRODUCTS_PER_PAGE,
   );
-  // console.log(paginatedProducts);
+
   return (
     <main className="min-h-screen bg-gray-50 py-10 md:py-16 md:mt-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header & Controls Bar */}
         <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
@@ -194,7 +180,6 @@ export default function ShopPage() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            {/* Search Input */}
             <div className="relative w-full sm:w-64">
               <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
@@ -209,7 +194,6 @@ export default function ShopPage() {
               />
             </div>
 
-            {/* Mobile Filter Toggle Button */}
             <button
               type="button"
               onClick={() => setMobileFilterOpen(true)}
@@ -219,7 +203,6 @@ export default function ShopPage() {
               Filters
             </button>
 
-            {/* Sort Dropdown */}
             <select
               value={sortBy}
               onChange={(e) => {
@@ -238,9 +221,7 @@ export default function ShopPage() {
           </div>
         </div>
 
-        {/* Content Layout */}
         <div className="flex gap-8 items-start">
-          {/* Desktop Filter Sidebar */}
           <aside className="hidden lg:block w-64 shrink-0 bg-white border border-purple-100 rounded-2xl p-5 sticky top-24 shadow-xs space-y-6">
             <div className="flex items-center justify-between border-b border-purple-50 pb-3">
               <h3 className="font-bold text-gray-900 text-sm">Filters</h3>
@@ -253,7 +234,6 @@ export default function ShopPage() {
               </button>
             </div>
 
-            {/* Categories */}
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
                 Category
@@ -279,7 +259,6 @@ export default function ShopPage() {
               </div>
             </div>
 
-            {/* Price Filter */}
             <div className="border-t border-purple-50 pt-4">
               <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
                 Price Range ($)
@@ -310,7 +289,6 @@ export default function ShopPage() {
               </div>
             </div>
 
-            {/* Rating Filter */}
             <div className="border-t border-purple-50 pt-4">
               <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
                 Minimum Rating
@@ -344,7 +322,6 @@ export default function ShopPage() {
             </div>
           </aside>
 
-          {/* Product Grid Area */}
           <div className="flex-1 min-w-0">
             {loading ? (
               <ProductGridSkeleton count={8} />
@@ -365,7 +342,6 @@ export default function ShopPage() {
                         key={product._id}
                         className="group bg-white rounded-2xl border border-purple-100 hover:border-purple-200 overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col"
                       >
-                        {/* Image Container */}
                         <div className="relative h-56 bg-purple-50/30 flex items-center justify-center p-4 overflow-hidden">
                           <Image
                             src={product.images?.[0] || "/placeholder.svg"}
@@ -381,7 +357,6 @@ export default function ShopPage() {
                           )}
                         </div>
 
-                        {/* Card Info */}
                         <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                           <div className="space-y-1.5">
                             <div className="flex items-center justify-between text-xs">
@@ -400,7 +375,6 @@ export default function ShopPage() {
                             </Link>
                           </div>
 
-                          {/* Price and Visit Shop CTA */}
                           <div className="pt-3 border-t border-purple-50 flex items-center justify-between gap-3">
                             <div>
                               <span className="text-base font-black text-gray-900">
@@ -430,7 +404,6 @@ export default function ShopPage() {
                   })}
                 </div>
 
-                {/* Pagination */}
                 {totalPages > 1 && (
                   <div className="mt-10 flex items-center justify-center gap-2">
                     {Array.from({ length: totalPages }).map((_, idx) => {
@@ -460,7 +433,6 @@ export default function ShopPage() {
         </div>
       </div>
 
-      {/* Mobile Filter Drawer / Modal */}
       {mobileFilterOpen && (
         <div className="fixed inset-0 z-50 flex lg:hidden">
           <div
@@ -480,7 +452,6 @@ export default function ShopPage() {
                 </button>
               </div>
 
-              {/* Mobile Category List */}
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
                   Category
@@ -506,7 +477,6 @@ export default function ShopPage() {
                 </div>
               </div>
 
-              {/* Mobile Price */}
               <div className="border-t border-purple-50 pt-4">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
                   Price ($)

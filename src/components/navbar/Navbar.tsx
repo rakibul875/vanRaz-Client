@@ -25,7 +25,7 @@ import { SearchBar } from "@/components/SearchBar";
 import CartDrawer from "@/components/navbar/CartDrawer";
 import { useTheme } from "next-themes";
 
-const ADMIN_EMAIL = "fhlimon6@gmail.com";
+const ADMIN_EMAIL = "rakibulislamashik@gmail.com";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
