@@ -57,7 +57,6 @@ export default function CartPage() {
   return (
     <main className="min-h-screen bg-[#FAF5FF]/30 dark:bg-[#090a2d] py-10 md:py-16 mt-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb / Title */}
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-purple-950 dark:text-white tracking-tight">
@@ -78,7 +77,6 @@ export default function CartPage() {
           </button>
         </div>
 
-        {/* Free Shipping Progress Indicator */}
         <div className="mb-8 bg-white p-4 sm:p-5 rounded-2xl border border-purple-100 shadow-sm">
           <div className="flex items-center justify-between text-xs sm:text-sm font-semibold mb-2 text-purple-950">
             <span className="flex items-center gap-2">
@@ -99,9 +97,7 @@ export default function CartPage() {
           </div>
         </div>
 
-        {/* Main Grid: Items List & Summary */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-          {/* Cart Items List */}
           <section className="lg:col-span-2 space-y-4">
             <div className="bg-white rounded-2xl border border-purple-100 shadow-sm overflow-hidden divide-y divide-purple-50">
               {items.map((item) => {
@@ -111,7 +107,6 @@ export default function CartPage() {
                     key={item.id}
                     className="p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition hover:bg-[#FAF5FF]/50"
                   >
-                    {/* Image and Title */}
                     <div className="flex items-center gap-4 w-full sm:w-auto flex-1 min-w-0">
                       <Link
                         href={`/products/${item.id}`}
@@ -143,14 +138,12 @@ export default function CartPage() {
                       </div>
                     </div>
 
-                    {/* Price (Desktop) */}
                     <div className="hidden sm:block text-right w-24">
                       <span className="text-sm font-bold text-purple-950">
                         ${item.price.toFixed(2)}
                       </span>
                     </div>
 
-                    {/* Quantity Controls */}
                     <div className="flex items-center justify-between w-full sm:w-auto gap-4">
                       <div className="flex items-center border border-purple-200 rounded-xl overflow-hidden bg-white shadow-xs">
                         <button
@@ -176,14 +169,12 @@ export default function CartPage() {
                         </button>
                       </div>
 
-                      {/* Item Total */}
                       <div className="text-right min-w-[70px]">
                         <span className="text-sm font-extrabold text-purple-950">
                           ${itemTotal.toFixed(2)}
                         </span>
                       </div>
 
-                      {/* Remove Button */}
                       <button
                         type="button"
                         onClick={() => removeFromCart(item.id)}
@@ -199,7 +190,6 @@ export default function CartPage() {
               })}
             </div>
 
-            {/* Back to Shop Link */}
             <div className="pt-2">
               <Link
                 href="/shop"
@@ -211,7 +201,6 @@ export default function CartPage() {
             </div>
           </section>
 
-          {/* Cart Summary Sidebar */}
           <aside className="lg:col-span-1">
             <div className="bg-white rounded-2xl border border-purple-100 p-6 shadow-sm sticky top-24 space-y-6">
               <h2 className="text-lg font-bold text-purple-950">
@@ -247,7 +236,6 @@ export default function CartPage() {
                 </div>
               </div>
 
-              {/* Checkout CTA */}
               <Link
                 href="/checkout"
                 className="w-full flex items-center justify-center gap-2 bg-[#7E22CE] hover:bg-purple-800 text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-purple-950/10 transition-all duration-200"
@@ -256,7 +244,6 @@ export default function CartPage() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
 
-              {/* Security badges */}
               <div className="flex items-center justify-center gap-2 text-xs text-purple-900/50 pt-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-500" />
                 <span>SSL Encrypted & Guaranteed Safe Checkout</span>
