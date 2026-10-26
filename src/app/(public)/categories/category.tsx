@@ -77,9 +77,6 @@ export default function Categories() {
 
   return (
     <main className="min-h-screen bg-slate-50/50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
-      {/* =========================
-          HERO SECTION
-      ========================= */}
       <section className="relative overflow-hidden border-b border-purple-100/60 dark:border-purple-950/40 bg-gradient-to-br from-purple-50/80 via-white to-purple-50/30 dark:from-slate-900 dark:via-purple-950/20 dark:to-slate-950 pb-20 pt-28">
         <div className="absolute -left-20 top-20 h-72 w-72 rounded-full bg-purple-200/30 dark:bg-purple-900/10 blur-3xl pointer-events-none" />
         <div className="absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-purple-300/20 dark:bg-purple-800/10 blur-3xl pointer-events-none" />
@@ -106,12 +103,8 @@ export default function Categories() {
         </div>
       </section>
 
-      {/* =========================
-          CATEGORIES LISTING SECTION
-      ========================= */}
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
           <div className="flex flex-col justify-between gap-4 border-b border-purple-100 dark:border-purple-950 pb-8 sm:flex-row sm:items-end">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-widest text-purple-600 dark:text-purple-400">
@@ -137,7 +130,6 @@ export default function Categories() {
             </Link>
           </div>
 
-          {/* Loading Skeleton */}
           {loading && (
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {Array.from({ length: 8 }).map((_, i) => (
@@ -156,7 +148,6 @@ export default function Categories() {
             </div>
           )}
 
-          {/* Error State */}
           {!loading && error && (
             <div className="mt-10 flex flex-col items-center justify-center rounded-3xl border border-dashed border-red-200 dark:border-red-900/50 bg-red-50/30 dark:bg-red-950/20 py-16 text-center">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400">
@@ -176,7 +167,6 @@ export default function Categories() {
             </div>
           )}
 
-          {/* Empty State */}
           {!loading && !error && categories.length === 0 && (
             <div className="mt-10 flex flex-col items-center justify-center rounded-3xl border border-dashed border-purple-200 dark:border-purple-900 bg-white dark:bg-slate-900 py-20 text-center shadow-sm">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-50 dark:bg-purple-950 text-purple-400">
@@ -192,7 +182,6 @@ export default function Categories() {
             </div>
           )}
 
-          {/* Categories Grid */}
           {!loading && !error && categories.length > 0 && (
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {categories.map((category) => (
@@ -203,11 +192,9 @@ export default function Categories() {
                 >
                   <div className="flex h-full flex-col justify-between rounded-2xl border border-purple-100/80 dark:border-purple-950/60 bg-white dark:bg-slate-900 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-purple-300 dark:hover:border-purple-700 hover:shadow-xl hover:shadow-purple-600/5">
                     <div>
-                      {/* Icon Container & Badge */}
                       <div className="flex items-center justify-between">
                         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 dark:bg-purple-950/50 border border-purple-100 dark:border-purple-900 text-purple-600 dark:text-purple-400 transition-colors duration-300 group-hover:bg-purple-600 group-hover:text-white dark:group-hover:bg-purple-600">
                           {category.icon ? (
-                            // eslint-disable-next-line @next/next/no-img-element
                             <img
                               src={category.icon}
                               alt=""
@@ -223,7 +210,6 @@ export default function Categories() {
                         </div>
                       </div>
 
-                      {/* Content */}
                       <h3 className="mt-5 text-lg font-bold text-slate-900 dark:text-white transition-colors duration-200 group-hover:text-purple-600 dark:group-hover:text-purple-400">
                         {category.name}
                       </h3>
@@ -245,14 +231,10 @@ export default function Categories() {
         </div>
       </section>
 
-      {/* =========================
-          FEATURED PROMO BANNER
-      ========================= */}
       <section className="bg-slate-50 dark:bg-slate-900/50 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 dark:from-purple-950 dark:via-purple-900 dark:to-slate-950 text-white shadow-xl shadow-purple-900/10">
             <div className="grid items-center lg:grid-cols-2">
-              {/* Content */}
               <div className="p-8 sm:p-12 lg:p-16">
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-md">
                   <Sparkles className="h-6 w-6 text-purple-300" />
@@ -277,7 +259,6 @@ export default function Categories() {
                 </Link>
               </div>
 
-              {/* Right Visual Graphic */}
               <div className="hidden h-full min-h-[360px] items-center justify-center bg-purple-950/40 dark:bg-slate-950/40 p-8 lg:flex">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="flex h-28 w-28 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-md shadow-lg transition-transform hover:-translate-y-1">
@@ -302,9 +283,6 @@ export default function Categories() {
         </div>
       </section>
 
-      {/* =========================
-          BOTTOM CTA
-      ========================= */}
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white sm:text-3xl">
