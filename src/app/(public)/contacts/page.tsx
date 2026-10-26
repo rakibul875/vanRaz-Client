@@ -99,16 +99,12 @@ export default function ContactPage() {
 
   return (
     <main className="relative min-h-screen bg-slate-950 text-slate-100 selection:bg-indigo-500 selection:text-white antialiased">
-      {/* Background Decorative Gradients */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-indigo-600/20 blur-[120px]" />
         <div className="absolute top-1/3 -right-40 h-[600px] w-[600px] rounded-full bg-violet-600/15 blur-[140px]" />
         <div className="absolute -bottom-40 left-1/3 h-[500px] w-[500px] rounded-full bg-blue-600/15 blur-[120px]" />
       </div>
 
-      {/* =========================
-          HERO SECTION
-      ========================== */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
@@ -129,7 +125,6 @@ export default function ContactPage() {
               our dedicated client care team and experience seamless resolution.
             </p>
 
-            {/* Quick Stats Banner */}
             <div className="mt-12 grid grid-cols-2 gap-4 rounded-2xl border border-slate-800 bg-slate-900/50 p-6 backdrop-blur-xl sm:grid-cols-4">
               <div>
                 <p className="text-2xl font-bold text-white">&lt; 15 min</p>
@@ -154,15 +149,9 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* =========================
-          CONTACT SECTION
-      ========================== */}
       <section className="relative py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
-            {/* =====================
-                CONTACT INFO CARDS
-            ====================== */}
             <div className="space-y-6 lg:col-span-5">
               <div>
                 <span className="text-xs font-bold uppercase tracking-widest text-indigo-400">
@@ -178,7 +167,6 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-4">
-                {/* Email Card */}
                 <div className="group relative flex items-start gap-4 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-md transition-all duration-300 hover:border-indigo-500/50 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-indigo-500/10">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400 transition-colors group-hover:bg-indigo-600 group-hover:text-white">
                     <Mail className="h-5 w-5" />
@@ -194,7 +182,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Phone Card */}
                 <div className="group relative flex items-start gap-4 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-md transition-all duration-300 hover:border-violet-500/50 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-violet-500/10">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-violet-500/10 text-violet-400 transition-colors group-hover:bg-violet-600 group-hover:text-white">
                     <Phone className="h-5 w-5" />
@@ -210,7 +197,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Office Location */}
                 <div className="group relative flex items-start gap-4 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-md transition-all duration-300 hover:border-blue-500/50 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-blue-500/10">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400 transition-colors group-hover:bg-blue-600 group-hover:text-white">
                     <MapPin className="h-5 w-5" />
@@ -226,7 +212,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Working Hours */}
                 <div className="group relative flex items-start gap-4 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur-md transition-all duration-300 hover:border-emerald-500/50 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-emerald-500/10">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
                     <Clock className="h-5 w-5" />
@@ -245,7 +230,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Trust Badge */}
               <div className="rounded-2xl border border-slate-800/80 bg-gradient-to-r from-slate-900 via-indigo-950/20 to-slate-900 p-5">
                 <div className="flex items-center gap-3 text-indigo-400">
                   <ShieldCheck className="h-5 w-5 shrink-0" />
@@ -256,12 +240,8 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* =====================
-                CONTACT FORM CARD
-            ====================== */}
             <div className="lg:col-span-7">
               <div className="relative rounded-3xl border border-slate-800 bg-slate-900/80 p-6 backdrop-blur-2xl shadow-2xl shadow-indigo-950/40 sm:p-10">
-                {/* Form Navigation Tabs */}
                 <div className="flex rounded-xl bg-slate-950/80 p-1.5 border border-slate-800/80 mb-8">
                   <button
                     type="button"
@@ -289,7 +269,6 @@ export default function ContactPage() {
                   </button>
                 </div>
 
-                {/* Status Alert Banner */}
                 {statusMessage && (
                   <div
                     className={`mb-6 flex items-start gap-3 rounded-2xl p-4 text-sm font-medium backdrop-blur-md ${
@@ -308,7 +287,6 @@ export default function ContactPage() {
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Name + Email */}
                   <div className="grid gap-6 sm:grid-cols-2">
                     <div>
                       <label
@@ -414,7 +392,6 @@ export default function ContactPage() {
                     </div>
                   )}
 
-                  {/* Message Field */}
                   <div>
                     <label
                       htmlFor="message"
@@ -440,7 +417,6 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -469,9 +445,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* =========================
-          FAQ / CTA FOOTER BANNER
-      ========================== */}
       <section className="relative py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-3xl border border-indigo-500/30 bg-gradient-to-br from-indigo-950/80 via-slate-900 to-violet-950/80 px-6 py-12 text-center backdrop-blur-xl sm:px-12">
