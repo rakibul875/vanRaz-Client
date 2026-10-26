@@ -32,7 +32,6 @@ export default function CheckoutPage() {
     paymentMethod: string;
   } | null>(null);
 
-  // Form State (Default with session user info if available)
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -43,8 +42,6 @@ export default function CheckoutPage() {
     notes: "",
   });
 
-  // Seed name/email from the session once it arrives, without clobbering
-  // anything the shopper has already typed.
   const seededUserId = useRef<string | null>(null);
   useEffect(() => {
     const user = session?.user;
@@ -62,10 +59,9 @@ export default function CheckoutPage() {
   const discountAmount = (subtotal * discountPercent) / 100;
   const finalTotal = Math.max(0, subtotal + shipping - discountAmount);
 
-  // 🛒 🚀 Abandoned Cart Tracking Handler (Auto-Save on Input Blur)
   const trackAbandonedCart = useCallback(async () => {
     if (items.length === 0) return;
-    // অন্ততপক্ষে Phone, Email অথবা Name পূরণ হলে ট্র্যাকিং শুরু হবে
+
     if (!formData.phone && !formData.email && !formData.fullName) return;
 
     const API_URL =
@@ -153,7 +149,6 @@ export default function CheckoutPage() {
         paymentMethod: paymentMethod === "cod" ? "cash_on_delivery" : "online",
       };
 
-      // Send to Backend API
       const API_URL =
         process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
       if (API_URL) {
@@ -196,7 +191,6 @@ export default function CheckoutPage() {
     }
   };
 
-  // Order Success Screen
   if (placedOrder) {
     return (
       <main className="min-h-[80vh] flex items-center justify-center bg-[#fcfdfd] py-16 px-4 dark:bg-slate-950">
@@ -213,22 +207,27 @@ export default function CheckoutPage() {
             is currently being processed.
           </p>
 
-          {/* Tracking Details Card */}
           <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 text-left space-y-3 mb-8 text-xs sm:text-sm dark:bg-slate-800/60 dark:border-slate-800">
             <div className="flex justify-between items-center">
-              <span className="text-slate-500 dark:text-slate-400">Order ID</span>
+              <span className="text-slate-500 dark:text-slate-400">
+                Order ID
+              </span>
               <span className="font-bold text-slate-900 dark:text-white">
                 {placedOrder.orderId}
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-slate-500 dark:text-slate-400">Tracking Number</span>
+              <span className="text-slate-500 dark:text-slate-400">
+                Tracking Number
+              </span>
               <span className="font-mono font-bold text-[#ff594d] bg-red-50 px-2 py-0.5 rounded dark:bg-red-950/40">
                 {placedOrder.trackingId}
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-slate-500 dark:text-slate-400">Payment Method</span>
+              <span className="text-slate-500 dark:text-slate-400">
+                Payment Method
+              </span>
               <span className="font-medium text-slate-900 uppercase dark:text-white">
                 {placedOrder.paymentMethod === "cod"
                   ? "Cash on Delivery"
@@ -236,7 +235,9 @@ export default function CheckoutPage() {
               </span>
             </div>
             <div className="flex justify-between items-center border-t border-slate-200 pt-2.5 dark:border-slate-700">
-              <span className="font-bold text-slate-900 dark:text-white">Total Paid</span>
+              <span className="font-bold text-slate-900 dark:text-white">
+                Total Paid
+              </span>
               <span className="text-base font-extrabold text-slate-900 dark:text-white">
                 ${placedOrder.total.toFixed(2)}
               </span>
@@ -262,7 +263,6 @@ export default function CheckoutPage() {
     );
   }
 
-  // Empty Cart Guard
   if (items.length === 0) {
     return (
       <main className="min-h-[70vh] flex items-center justify-center bg-[#fcfdfd] py-16 dark:bg-slate-950">
@@ -280,7 +280,6 @@ export default function CheckoutPage() {
   return (
     <main className="min-h-screen bg-[#fcfdfd] py-10 md:py-16 dark:bg-slate-950">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="mb-8">
           <Link
             href="/cart"
@@ -295,14 +294,12 @@ export default function CheckoutPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Shipping Form & Payment Selection */}
           <section className="lg:col-span-7 space-y-6">
             <form
               onSubmit={handlePlaceOrder}
               className="space-y-6"
               id="checkout-form"
             >
-              {/* Shipping Address */}
               <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-5 dark:bg-slate-900 dark:border-slate-800">
                 <div className="flex items-center gap-3 border-b border-slate-100 pb-4 dark:border-slate-800">
                   <div className="p-2 rounded-lg bg-red-50 text-[#ff594d] dark:bg-red-950/40">
@@ -329,7 +326,7 @@ export default function CheckoutPage() {
                       required
                       value={formData.fullName}
                       onChange={handleInputChange}
-                      onBlur={trackAbandonedCart} // 👈 Auto Track on Blur
+                      onBlur={trackAbandonedCart}
                       placeholder="e.g. Tanvir Hasan"
                       className="w-full text-sm border border-slate-200 rounded-xl px-4 py-3 outline-none transition focus:border-[#ff594d] focus:ring-1 focus:ring-[#ff594d] bg-white text-slate-900 placeholder:text-slate-400 dark:bg-slate-800 dark:text-white dark:border-slate-700 dark:placeholder:text-slate-500"
                     />
@@ -345,7 +342,7 @@ export default function CheckoutPage() {
                       required
                       value={formData.phone}
                       onChange={handleInputChange}
-                      onBlur={trackAbandonedCart} // 👈 Auto Track on Blur
+                      onBlur={trackAbandonedCart}
                       placeholder="e.g. +880 1712 345678"
                       className="w-full text-sm border border-slate-200 rounded-xl px-4 py-3 outline-none transition focus:border-[#ff594d] focus:ring-1 focus:ring-[#ff594d] bg-white text-slate-900 placeholder:text-slate-400 dark:bg-slate-800 dark:text-white dark:border-slate-700 dark:placeholder:text-slate-500"
                     />
@@ -360,7 +357,7 @@ export default function CheckoutPage() {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      onBlur={trackAbandonedCart} // 👈 Auto Track on Blur
+                      onBlur={trackAbandonedCart}
                       placeholder="you@example.com"
                       className="w-full text-sm border border-slate-200 rounded-xl px-4 py-3 outline-none transition focus:border-[#ff594d] focus:ring-1 focus:ring-[#ff594d] bg-white text-slate-900 placeholder:text-slate-400 dark:bg-slate-800 dark:text-white dark:border-slate-700 dark:placeholder:text-slate-500"
                     />
@@ -376,7 +373,7 @@ export default function CheckoutPage() {
                       required
                       value={formData.address}
                       onChange={handleInputChange}
-                      onBlur={trackAbandonedCart} // 👈 Auto Track on Blur
+                      onBlur={trackAbandonedCart}
                       placeholder="House, Road, Area, Ward"
                       className="w-full text-sm border border-slate-200 rounded-xl px-4 py-3 outline-none transition focus:border-[#ff594d] focus:ring-1 focus:ring-[#ff594d] bg-white text-slate-900 placeholder:text-slate-400 dark:bg-slate-800 dark:text-white dark:border-slate-700 dark:placeholder:text-slate-500"
                     />
@@ -390,7 +387,7 @@ export default function CheckoutPage() {
                       name="city"
                       value={formData.city}
                       onChange={handleInputChange}
-                      onBlur={trackAbandonedCart} // 👈 Auto Track on Blur
+                      onBlur={trackAbandonedCart}
                       className="w-full text-sm border border-slate-200 rounded-xl px-4 py-3 outline-none transition focus:border-[#ff594d] focus:ring-1 focus:ring-[#ff594d] bg-white text-slate-900 placeholder:text-slate-400 dark:bg-slate-800 dark:text-white dark:border-slate-700 dark:placeholder:text-slate-500"
                     >
                       <option value="Dhaka">Dhaka</option>
@@ -412,7 +409,7 @@ export default function CheckoutPage() {
                       name="postalCode"
                       value={formData.postalCode}
                       onChange={handleInputChange}
-                      onBlur={trackAbandonedCart} // 👈 Auto Track on Blur
+                      onBlur={trackAbandonedCart}
                       placeholder="e.g. 1216"
                       className="w-full text-sm border border-slate-200 rounded-xl px-4 py-3 outline-none transition focus:border-[#ff594d] focus:ring-1 focus:ring-[#ff594d] bg-white text-slate-900 placeholder:text-slate-400 dark:bg-slate-800 dark:text-white dark:border-slate-700 dark:placeholder:text-slate-500"
                     />
@@ -420,7 +417,6 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              {/* Payment Method Selection */}
               <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4 dark:bg-slate-900 dark:border-slate-800">
                 <div className="flex items-center gap-3 border-b border-slate-100 pb-4 dark:border-slate-800">
                   <div className="p-2 rounded-lg bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40">
@@ -437,7 +433,6 @@ export default function CheckoutPage() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {/* Cash on Delivery */}
                   <label
                     className={`flex items-center gap-3.5 p-4 rounded-xl border-2 cursor-pointer transition ${
                       paymentMethod === "cod"
@@ -463,7 +458,6 @@ export default function CheckoutPage() {
                     </div>
                   </label>
 
-                  {/* Online / Card Payment */}
                   <label
                     className={`flex items-center gap-3.5 p-4 rounded-xl border-2 cursor-pointer transition ${
                       paymentMethod === "card"
@@ -493,7 +487,6 @@ export default function CheckoutPage() {
             </form>
           </section>
 
-          {/* Order Summary & Coupon */}
           <aside className="lg:col-span-5 space-y-6">
             <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm sticky top-24 space-y-5 dark:bg-slate-900 dark:border-slate-800">
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">
@@ -501,7 +494,6 @@ export default function CheckoutPage() {
                 {items.length === 1 ? "item" : "items"})
               </h2>
 
-              {/* Order Items Preview */}
               <div
                 data-lenis-prevent
                 className="max-h-60 overflow-y-auto divide-y divide-slate-100 pr-1 space-y-3 dark:divide-slate-800"
@@ -535,7 +527,6 @@ export default function CheckoutPage() {
                 ))}
               </div>
 
-              {/* Coupon Form */}
               <form
                 onSubmit={handleApplyCoupon}
                 className="pt-4 border-t border-slate-100 dark:border-slate-800"
@@ -560,7 +551,6 @@ export default function CheckoutPage() {
                 </div>
               </form>
 
-              {/* Price Breakdown */}
               <div className="border-t border-slate-100 pt-4 space-y-2.5 text-xs sm:text-sm dark:border-slate-800">
                 <div className="flex justify-between text-slate-600 dark:text-slate-300">
                   <span>Subtotal</span>
@@ -594,7 +584,6 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              {/* Place Order Submit Button */}
               <button
                 type="submit"
                 form="checkout-form"
