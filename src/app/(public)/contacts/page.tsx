@@ -6,7 +6,6 @@ import {
   Phone,
   MapPin,
   Clock,
-  Send,
   MessageSquare,
   Headphones,
   Sparkles,
@@ -15,7 +14,6 @@ import {
   Calendar,
   ArrowRight,
   ShieldCheck,
-  Building2,
 } from "lucide-react";
 
 export default function ContactPage() {
