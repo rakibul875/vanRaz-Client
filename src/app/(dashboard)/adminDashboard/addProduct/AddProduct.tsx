@@ -71,7 +71,6 @@ export const AddProductForm = () => {
       .catch(() => console.error("Failed to load categories"));
   }, []);
 
-  // AI Description & Auto Category
   const handleAIGenerate = async () => {
     if (!name.trim()) return toast.info("প্রোডাক্টের নাম লিখুন!");
     setAiLoading(true);
@@ -94,7 +93,6 @@ export const AddProductForm = () => {
     }
   };
 
-  // Upload a single selected file to Cloudinary and store the returned URL
   const uploadImage = async (id: string, file: File) => {
     try {
       const result = await uploadToCloudinary(file, (progress) => {
@@ -141,7 +139,6 @@ export const AddProductForm = () => {
     }
   };
 
-  // Handle file selection
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? []);
     e.target.value = "";
@@ -177,7 +174,6 @@ export const AddProductForm = () => {
   ).length;
   const pendingCount = images.filter((img) => img.uploading).length;
 
-  // Submit Product
   const handleSubmitProduct = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -241,7 +237,6 @@ export const AddProductForm = () => {
         onSubmit={handleSubmitProduct}
         className="space-y-6 rounded-2xl border border-purple-100 bg-white p-6 shadow-sm sm:p-8"
       >
-        {/* Title Header */}
         <div className="border-b border-slate-100 pb-5">
           <div className="flex items-center gap-2 text-purple-600">
             <Package className="h-5 w-5" />
@@ -258,7 +253,6 @@ export const AddProductForm = () => {
           </p>
         </div>
 
-        {/* Product Name */}
         <div>
           <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
             Product Name <span className="text-purple-600">*</span>
@@ -273,7 +267,6 @@ export const AddProductForm = () => {
           />
         </div>
 
-        {/* Product Images Drag & Drop Area */}
         <div>
           <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
             Product Images <span className="text-purple-600">*</span>
@@ -307,7 +300,6 @@ export const AddProductForm = () => {
             </label>
           </div>
 
-          {/* Upload Status Bar */}
           {images.length > 0 && (
             <div className="mt-3 flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-xs">
               <div className="flex items-center gap-3">
@@ -331,7 +323,6 @@ export const AddProductForm = () => {
             </div>
           )}
 
-          {/* Image Previews */}
           {images.length > 0 && (
             <div className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5">
               {images.map((img) => (
@@ -347,7 +338,6 @@ export const AddProductForm = () => {
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
 
-                  {/* Uploading Overlay */}
                   {img.uploading && (
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-slate-900/60 text-white backdrop-blur-xs">
                       <span className="text-xs font-bold">{img.progress}%</span>
@@ -360,21 +350,18 @@ export const AddProductForm = () => {
                     </div>
                   )}
 
-                  {/* Failed Banner */}
                   {!img.uploading && img.error && (
                     <div className="absolute inset-0 flex items-center justify-center bg-rose-600/80 p-1 text-center text-[10px] font-bold text-white">
                       Failed
                     </div>
                   )}
 
-                  {/* Uploaded Badge */}
                   {!img.uploading && !img.error && img.url && (
                     <div className="absolute left-1.5 top-1.5 rounded-md bg-purple-600/90 px-1.5 py-0.5 text-[9px] font-extrabold uppercase text-white shadow-sm backdrop-blur-xs">
                       Done
                     </div>
                   )}
 
-                  {/* Remove Button */}
                   <button
                     type="button"
                     aria-label="Remove image"
@@ -389,7 +376,6 @@ export const AddProductForm = () => {
           )}
         </div>
 
-        {/* Category & Brand */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
@@ -427,7 +413,6 @@ export const AddProductForm = () => {
           </div>
         </div>
 
-        {/* Price, Discount & Stock */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
@@ -480,7 +465,6 @@ export const AddProductForm = () => {
           </div>
         </div>
 
-        {/* AI Generator Panel */}
         <div className="flex flex-col gap-3 rounded-2xl border border-purple-200 bg-gradient-to-r from-purple-50 to-indigo-50/50 p-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-purple-600 text-white shadow-md shadow-purple-500/20">
@@ -516,7 +500,6 @@ export const AddProductForm = () => {
           </button>
         </div>
 
-        {/* Description Textarea */}
         <div>
           <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
             Description
@@ -530,7 +513,6 @@ export const AddProductForm = () => {
           />
         </div>
 
-        {/* Checkboxes */}
         <div className="flex flex-wrap gap-6 rounded-xl border border-slate-100 bg-slate-50/50 p-4">
           <label className="flex cursor-pointer items-center gap-2.5">
             <input
@@ -558,7 +540,6 @@ export const AddProductForm = () => {
           </label>
         </div>
 
-        {/* Flash Sale Options */}
         {isFlashSale && (
           <div className="grid grid-cols-1 gap-4 rounded-2xl border border-amber-200 bg-amber-50/40 p-4 sm:grid-cols-2">
             <div>
@@ -587,7 +568,6 @@ export const AddProductForm = () => {
           </div>
         )}
 
-        {/* Submit Button */}
         <button
           type="submit"
           disabled={loading}
