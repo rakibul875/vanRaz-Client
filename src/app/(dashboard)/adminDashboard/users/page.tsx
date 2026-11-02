@@ -29,7 +29,7 @@ import Image from "next/image";
 export default function AdminUsersPage() {
   const { data: session } = useSession();
   const token = session?.session?.token;
-  // console.log(token);
+
   const [users, setUsers] = useState<AdminUser[]>([]);
   const [totalUsers, setTotalUsers] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -38,7 +38,6 @@ export default function AdminUsersPage() {
   const [loading, setLoading] = useState(false);
   const [pendingUserId, setPendingUserId] = useState<string | null>(null);
 
-  // Confirmation modal state for Block/Unblock
   const [selectedUserForAction, setSelectedUserForAction] = useState<{
     user: AdminUser;
     type: "ROLE" | "STATUS";
@@ -47,7 +46,6 @@ export default function AdminUsersPage() {
 
   const isRowPending = (userId: string) => pendingUserId === userId;
 
-  // Toast feedback
   const [toastMessage, setToastMessage] = useState<{
     text: string;
     type: "success" | "error";
@@ -159,7 +157,6 @@ export default function AdminUsersPage() {
     }
   };
 
-  // Filtered Users
   const filteredUsers = users.filter((user) => {
     const name = (user.name || "").toLowerCase();
     const email = (user.email || "").toLowerCase();
@@ -182,7 +179,6 @@ export default function AdminUsersPage() {
 
   return (
     <div className="space-y-6">
-      {/* Toast Alert */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-red-500/30 bg-white px-5 py-3.5 text-sm font-semibold text-slate-900 shadow-2xl shadow-red-500/10 animate-in fade-in slide-in-from-bottom-5">
           <CheckCircle2 className="h-5 w-5 text-purple-500" />
@@ -190,7 +186,6 @@ export default function AdminUsersPage() {
         </div>
       )}
 
-      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
@@ -216,7 +211,6 @@ export default function AdminUsersPage() {
         </button>
       </div>
 
-      {/* Quick Stat Highlights */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5">
         <div className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm">
           <p className="text-[11px] font-medium text-slate-500">
@@ -252,7 +246,6 @@ export default function AdminUsersPage() {
         </div>
       </div>
 
-      {/* Filter & Search Bar */}
       <div className="flex flex-col md:flex-row gap-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm">
         <div className="relative flex-1">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -266,7 +259,6 @@ export default function AdminUsersPage() {
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          {/* Role Filter */}
           <div className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5">
             <Filter className="h-3.5 w-3.5 text-slate-400" />
             <span className="text-[11px] text-slate-500">Role:</span>
@@ -283,7 +275,6 @@ export default function AdminUsersPage() {
             </select>
           </div>
 
-          {/* Status Filter */}
           <div className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5">
             <span className="text-[11px] text-slate-500">Status:</span>
             <select
@@ -299,7 +290,6 @@ export default function AdminUsersPage() {
         </div>
       </div>
 
-      {/* User Table */}
       <div className="rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
@@ -326,7 +316,6 @@ export default function AdminUsersPage() {
                     key={user.id}
                     className="hover:bg-slate-50/80 transition-colors"
                   >
-                    {/* Details */}
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-3">
                         {user.avatar ? (
@@ -360,7 +349,6 @@ export default function AdminUsersPage() {
                       </div>
                     </td>
 
-                    {/* Role */}
                     <td className="py-3.5 px-4">
                       <span
                         className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold ${
@@ -383,7 +371,6 @@ export default function AdminUsersPage() {
                       </span>
                     </td>
 
-                    {/* Status */}
                     <td className="py-3.5 px-4">
                       <span
                         className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${
@@ -396,7 +383,6 @@ export default function AdminUsersPage() {
                       </span>
                     </td>
 
-                    {/* Joined Date */}
                     <td className="py-3.5 px-4 text-slate-500 text-[11px]">
                       <div className="flex items-center gap-1">
                         <Calendar className="h-3 w-3 text-slate-400" />
@@ -404,14 +390,12 @@ export default function AdminUsersPage() {
                       </div>
                     </td>
 
-                    {/* Activity */}
                     <td className="py-3.5 px-4 text-slate-500 text-[11px]">
                       {user.ordersCount} Orders
                       {user.shopsCount !== undefined &&
                         ` • ${user.shopsCount} Shop`}
                     </td>
 
-                    {/* Action Controls */}
                     <td className="py-3.5 px-4 text-right">
                       {user.role === "ADMIN" ? (
                         <span className="text-[11px] text-slate-400 font-medium">
@@ -419,7 +403,6 @@ export default function AdminUsersPage() {
                         </span>
                       ) : (
                         <div className="flex items-center justify-end gap-2">
-                          {/* Role Switch Button (User <-> Moderator) */}
                           <button
                             onClick={() => handleRoleToggle(user)}
                             disabled={isRowPending(user.id)}
@@ -442,7 +425,6 @@ export default function AdminUsersPage() {
                             </span>
                           </button>
 
-                          {/* Block / Unblock Toggle Button */}
                           <button
                             onClick={() => handleStatusToggle(user)}
                             disabled={isRowPending(user.id)}
@@ -476,7 +458,6 @@ export default function AdminUsersPage() {
         </div>
       </div>
 
-      {/* Confirmation Modal */}
       {selectedUserForAction && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl">
