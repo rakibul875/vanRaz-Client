@@ -102,7 +102,6 @@ export default function DashboardOverview() {
           pendingProductsCount: live.pendingProductsCount ?? 0,
         });
       } catch {
-        // keep existing values on failure
       } finally {
         setStatsLoading(false);
       }
@@ -206,7 +205,6 @@ export default function DashboardOverview() {
   return (
     <div className="min-h-screen bg-slate-50/50 p-4 sm:p-6 lg:p-8">
       <div className="mx-auto max-w-7xl space-y-8">
-        {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="flex items-center gap-2">
@@ -236,7 +234,6 @@ export default function DashboardOverview() {
           </div>
         </div>
 
-        {/* Key Metrics */}
         {statsLoading ? (
           <div className="grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {Array.from({ length: 4 }).map((_, i) => (
@@ -254,9 +251,7 @@ export default function DashboardOverview() {
           </div>
         )}
 
-        {/* Analytics Section */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          {/* Revenue Chart */}
           <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm lg:col-span-2">
             <div className="flex items-center justify-between">
               <div>
@@ -281,14 +276,13 @@ export default function DashboardOverview() {
               </span>
             </div>
 
-            {/* Interactive Column Visuals */}
             {chartLoading ? (
               <div className="mt-8 flex h-56 items-end gap-2 border-b border-slate-100 pb-2">
                 {Array.from({ length: 12 }).map((_, i) => (
                   <div
                     key={i}
                     className="flex-1 animate-pulse rounded-t-md bg-purple-100"
-                    style={{ height: `${40 + ((i % 5) * 12)}%` }}
+                    style={{ height: `${40 + (i % 5) * 12}%` }}
                   />
                 ))}
               </div>
@@ -315,7 +309,6 @@ export default function DashboardOverview() {
                         key={index}
                         className="group relative flex h-full flex-1 flex-col justify-end"
                       >
-                        {/* Tooltip */}
                         <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 transition-opacity duration-200 group-hover:opacity-100 pointer-events-none">
                           <span className="rounded bg-slate-900 px-2 py-1 text-[10px] font-semibold text-white shadow-md whitespace-nowrap">
                             ৳{item.revenue.toLocaleString()}
@@ -343,7 +336,6 @@ export default function DashboardOverview() {
             )}
           </div>
 
-          {/* Platform Health Card */}
           <div className="flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
             <div>
               <h2 className="text-base font-bold text-slate-900">
@@ -410,7 +402,6 @@ export default function DashboardOverview() {
           </div>
         </div>
 
-        {/* Recent Orders Table */}
         <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
           <div className="flex items-center justify-between border-b border-slate-100 p-6">
             <div>
@@ -513,7 +504,6 @@ export default function DashboardOverview() {
           </div>
         </div>
 
-        {/* Quick Actions */}
         <div>
           <div className="mb-4">
             <h2 className="text-base font-bold text-slate-900">
