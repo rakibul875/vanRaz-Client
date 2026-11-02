@@ -95,14 +95,12 @@ export default function VerifyShopsPage() {
   const [verifying, setVerifying] = useState(false);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
 
-  // Moderation Modal State
   const [modalAction, setModalAction] = useState<{
     type: "APPROVE" | "REJECT" | "SUSPEND" | "REACTIVATE";
     shop: ShopData;
   } | null>(null);
   const [reasonInput, setReasonInput] = useState("");
 
-  // Toast
   const [toastMessage, setToastMessage] = useState<{
     text: string;
     type: "success" | "error";
@@ -185,12 +183,7 @@ export default function VerifyShopsPage() {
           token,
         );
       } else {
-        await updateShopStatusAPI(
-          shopId,
-          newStatus,
-          reason || "",
-          token,
-        );
+        await updateShopStatusAPI(shopId, newStatus, reason || "", token);
       }
     } catch (err) {
       console.warn("Backend update error:", err);
@@ -277,7 +270,6 @@ export default function VerifyShopsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Toast */}
       {toastMessage && (
         <div
           className={`fixed top-4 right-4 z-50 flex items-center gap-2 rounded-xl px-4 py-3 text-xs font-semibold shadow-lg transition-all ${
@@ -295,7 +287,6 @@ export default function VerifyShopsPage() {
         </div>
       )}
 
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-slate-900 flex items-center gap-2">
@@ -321,7 +312,6 @@ export default function VerifyShopsPage() {
         </button>
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
         <div
           onClick={() => setActiveTab("pending")}
@@ -388,7 +378,6 @@ export default function VerifyShopsPage() {
         </div>
       </div>
 
-      {/* Filter Tabs */}
       <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
         {[
           { key: "ALL", label: `All Shops (${shops.length})` },
@@ -412,9 +401,7 @@ export default function VerifyShopsPage() {
         ))}
       </div>
 
-      {/* Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Shop List */}
         <div className="lg:col-span-1 space-y-3">
           <h2 className="text-xs font-bold uppercase tracking-wider text-slate-600 px-1">
             Showing {filteredShops.length} of {shops.length} Shops
@@ -483,7 +470,6 @@ export default function VerifyShopsPage() {
           )}
         </div>
 
-        {/* Verification Detail Panel */}
         <div className="lg:col-span-2">
           {!selectedShop ? (
             <div className="rounded-2xl border border-slate-200/80 bg-white p-12 text-center shadow-sm">
@@ -500,7 +486,6 @@ export default function VerifyShopsPage() {
             </div>
           ) : (
             <div className="rounded-2xl border border-slate-200/80 bg-white p-6 space-y-5 shadow-sm">
-              {/* Shop Header */}
               <div className="flex items-start justify-between">
                 <div>
                   <h3 className="text-lg font-bold text-slate-900">
@@ -522,7 +507,6 @@ export default function VerifyShopsPage() {
                 </span>
               </div>
 
-              {/* Status Reason Alert if rejected or suspended */}
               {selectedShop.rejectionReason && (
                 <div
                   className={`rounded-xl p-3.5 border text-xs flex items-start gap-2.5 ${
@@ -546,7 +530,6 @@ export default function VerifyShopsPage() {
                 </div>
               )}
 
-              {/* Shop Info */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="rounded-xl bg-slate-50 border border-slate-200/80 p-3.5">
                   <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">
@@ -577,7 +560,6 @@ export default function VerifyShopsPage() {
                 </p>
               </div>
 
-              {/* Verification Loading */}
               {verifying && (
                 <div className="flex items-center justify-center py-8">
                   <div className="flex items-center gap-3 text-slate-600">
@@ -589,10 +571,8 @@ export default function VerifyShopsPage() {
                 </div>
               )}
 
-              {/* Verification Result */}
               {verification && !verifying && (
                 <div className="space-y-4">
-                  {/* Trust Score */}
                   <div className="rounded-xl bg-slate-50 border border-slate-200/80 p-4">
                     <div className="flex items-center justify-between mb-3">
                       <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
@@ -627,7 +607,6 @@ export default function VerifyShopsPage() {
                     </p>
                   </div>
 
-                  {/* Issues */}
                   {verification.feedback.issuesFound.length > 0 && (
                     <div className="rounded-xl bg-rose-50 border border-rose-200 p-4">
                       <p className="text-xs font-bold text-purple-500 uppercase tracking-wider mb-2">
@@ -647,7 +626,6 @@ export default function VerifyShopsPage() {
                     </div>
                   )}
 
-                  {/* Enhanced Data */}
                   <div className="rounded-xl bg-slate-50 border border-slate-200/80 p-4 space-y-3">
                     <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
                       Enhanced Profile Data
@@ -685,9 +663,7 @@ export default function VerifyShopsPage() {
                 </div>
               )}
 
-              {/* Action Buttons: Pending Moderation & Active/Suspended Controls */}
               <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-200">
-                {/* When Pending: Approve or Reject Modal */}
                 {selectedShop.status === "pending" && (
                   <>
                     <button
@@ -711,7 +687,6 @@ export default function VerifyShopsPage() {
                   </>
                 )}
 
-                {/* When Active/Approved: Suspend Control */}
                 {(selectedShop.status === "active" ||
                   selectedShop.status === "approved") && (
                   <button
@@ -725,7 +700,6 @@ export default function VerifyShopsPage() {
                   </button>
                 )}
 
-                {/* When Suspended: Reactivate Control */}
                 {selectedShop.status === "suspended" && (
                   <button
                     type="button"
@@ -738,7 +712,6 @@ export default function VerifyShopsPage() {
                   </button>
                 )}
 
-                {/* When Rejected: Allow Re-review */}
                 {selectedShop.status === "rejected" && (
                   <button
                     type="button"
@@ -756,7 +729,6 @@ export default function VerifyShopsPage() {
         </div>
       </div>
 
-      {/* Moderation Modal (Approve / Reject with Reason / Suspend / Reactivate) */}
       {modalAction && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl space-y-4">
