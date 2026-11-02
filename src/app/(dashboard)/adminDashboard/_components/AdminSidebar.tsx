@@ -47,12 +47,10 @@ export default function AdminSidebar({
 }: AdminSidebarProps) {
   const pathname = usePathname();
 
-  // Route change hole mobile-e automatic drawer close hobe
   useEffect(() => {
     onClose?.();
   }, [pathname, onClose]);
 
-  // Drawer open thakle body scroll prevent hobe
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -65,7 +63,6 @@ export default function AdminSidebar({
     };
   }, [isOpen]);
 
-  // Escape key press korle mobile drawer close hobe
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen && onClose) {
@@ -78,7 +75,6 @@ export default function AdminSidebar({
 
   return (
     <>
-      {/* Mobile Dark Overlay Backdrop */}
       {isOpen && (
         <div
           className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm transition-opacity md:hidden"
@@ -86,13 +82,11 @@ export default function AdminSidebar({
         />
       )}
 
-      {/* Main Sidebar / Drawer Container */}
       <aside
         className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-purple-100 bg-white text-slate-700 select-none shadow-sm transition-transform duration-300 ease-in-out md:sticky md:top-0 md:h-screen md:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Brand Header */}
         <div className="flex h-16 items-center justify-between border-b border-purple-100 px-6">
           <Link
             href="/adminDashboard"
@@ -117,7 +111,6 @@ export default function AdminSidebar({
             </div>
           </Link>
 
-          {/* Close Button for Mobile Drawer */}
           <button
             onClick={onClose}
             className="rounded-lg p-1 text-slate-400 hover:bg-purple-50 hover:text-purple-600 md:hidden transition-colors"
@@ -127,7 +120,6 @@ export default function AdminSidebar({
           </button>
         </div>
 
-        {/* Navigation Links */}
         <div className="flex-1 overflow-y-auto p-4 space-y-6">
           <div>
             <p className="mb-2 px-3 text-[10px] font-bold uppercase tracking-wider text-purple-900/40">
@@ -154,7 +146,6 @@ export default function AdminSidebar({
                         : "text-slate-600 hover:bg-purple-50/60 hover:text-purple-700"
                     }`}
                   >
-                    {/* Left Active Indicator Bar */}
                     {isActive && (
                       <span className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-1 rounded-r-full bg-purple-600" />
                     )}
@@ -178,7 +169,6 @@ export default function AdminSidebar({
             </nav>
           </div>
 
-          {/* Live System Status Widget */}
           <div className="rounded-2xl border border-purple-100 bg-purple-50/40 p-3.5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -199,7 +189,6 @@ export default function AdminSidebar({
           </div>
         </div>
 
-        {/* Footer Controls */}
         <div className="border-t border-purple-100 p-4 space-y-3">
           <Link
             href="/userDashboard"
