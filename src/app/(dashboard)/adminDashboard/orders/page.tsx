@@ -46,11 +46,9 @@ export default function AdminOrdersPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Selected Order for Details View
   const [selectedOrderDetails, setSelectedOrderDetails] =
     useState<AdminOrder | null>(null);
 
-  // Tracking Assignment Modal
   const [trackingModalOrder, setTrackingModalOrder] =
     useState<AdminOrder | null>(null);
   const [selectedCourier, setSelectedCourier] = useState(COURIER_PROVIDERS[0]);
@@ -58,8 +56,7 @@ export default function AdminOrdersPage() {
   const [estimatedDeliveryInput, setEstimatedDeliveryInput] = useState("");
   const { data: session } = authClient.useSession();
   const token = session?.session?.token;
-  // console.log(orders, token);
-  // Toast
+
   const [toastMessage, setToastMessage] = useState<{
     text: string;
     type: "success" | "error";
@@ -95,7 +92,6 @@ export default function AdminOrdersPage() {
       window.removeEventListener("venraz_admin_data_updated", handleUpdate);
   }, []);
 
-  // Quick Status Transition
   const handleQuickStatusChange = async (
     orderId: string,
     status: AdminOrderStatus,
@@ -159,7 +155,6 @@ export default function AdminOrdersPage() {
     }
   };
 
-  // Filtered Orders
   const filteredOrders = orders.filter((order) => {
     const matchesTab =
       activeTab === "ALL" ||
@@ -189,7 +184,6 @@ export default function AdminOrdersPage() {
 
   return (
     <div className="space-y-6">
-      {/* Toast Alert */}
       {toastMessage && (
         <div
           className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border px-5 py-3.5 text-sm font-semibold shadow-2xl animate-in fade-in slide-in-from-bottom-5 bg-white ${
@@ -207,7 +201,6 @@ export default function AdminOrdersPage() {
         </div>
       )}
 
-      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
@@ -230,7 +223,6 @@ export default function AdminOrdersPage() {
         </div>
       </div>
 
-      {/* Filter Tabs & Search */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-200 pb-4">
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
           {[
@@ -279,7 +271,6 @@ export default function AdminOrdersPage() {
         </div>
       </div>
 
-      {/* Orders Table */}
       <div className="rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
@@ -313,7 +304,6 @@ export default function AdminOrdersPage() {
                     key={order.id}
                     className="hover:bg-slate-50/80 transition-colors"
                   >
-                    {/* Order ID & Date */}
                     <td className="py-3.5 px-4 font-mono">
                       <span className="font-extrabold text-slate-900 text-xs">
                         {order.orderNumber}
@@ -324,7 +314,6 @@ export default function AdminOrdersPage() {
                       </div>
                     </td>
 
-                    {/* Customer */}
                     <td className="py-3.5 px-4">
                       <p className="font-bold text-slate-900">
                         {order.customerName}
@@ -341,14 +330,12 @@ export default function AdminOrdersPage() {
                       </p>
                     </td>
 
-                    {/* Store */}
                     <td className="py-3.5 px-4">
                       <span className="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 text-[11px] font-semibold">
                         {order.shopName}
                       </span>
                     </td>
 
-                    {/* Amount & Payment */}
                     <td className="py-3.5 px-4">
                       <p className="font-extrabold text-slate-900 text-xs">
                         ৳{order.totalAmount.toLocaleString()}
@@ -369,7 +356,6 @@ export default function AdminOrdersPage() {
                       </div>
                     </td>
 
-                    {/* Fulfillment Status */}
                     <td className="py-3.5 px-4">
                       <select
                         value={order.orderStatus}
@@ -396,7 +382,6 @@ export default function AdminOrdersPage() {
                       </select>
                     </td>
 
-                    {/* Courier & Tracking */}
                     <td className="py-3.5 px-4">
                       {order.trackingId ? (
                         <div>
@@ -424,7 +409,6 @@ export default function AdminOrdersPage() {
                       )}
                     </td>
 
-                    {/* Action Controls */}
                     <td className="py-3.5 px-4 text-right">
                       <div className="flex items-center justify-end gap-1.5">
                         <button
@@ -452,7 +436,6 @@ export default function AdminOrdersPage() {
         </div>
       </div>
 
-      {/* Tracking Assignment Modal */}
       {trackingModalOrder && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm animate-in fade-in duration-200">
           <form
@@ -484,7 +467,6 @@ export default function AdminOrdersPage() {
               </button>
             </div>
 
-            {/* Courier Selection */}
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
                 Logistics Partner:
@@ -502,7 +484,6 @@ export default function AdminOrdersPage() {
               </select>
             </div>
 
-            {/* Tracking ID with quick generate button */}
             <div>
               <div className="flex items-center justify-between mb-1">
                 <label className="text-xs font-semibold text-slate-700">
@@ -526,7 +507,6 @@ export default function AdminOrdersPage() {
               />
             </div>
 
-            {/* Estimated Delivery Date */}
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
                 Estimated Delivery Date:
@@ -558,7 +538,6 @@ export default function AdminOrdersPage() {
         </div>
       )}
 
-      {/* Order Details Drawer Modal */}
       {selectedOrderDetails && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl space-y-4">
