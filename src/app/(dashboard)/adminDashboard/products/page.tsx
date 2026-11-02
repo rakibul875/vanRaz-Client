@@ -117,7 +117,6 @@ export default function AdminProductsPage() {
     }
   };
 
-  // Filtered Products
   const filteredProducts = products.filter((p) => {
     const matchesTab =
       activeTab === "ALL" ||
@@ -141,7 +140,6 @@ export default function AdminProductsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Toast */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-red-500/30 bg-white px-5 py-3.5 text-sm font-semibold text-slate-900 shadow-2xl shadow-red-500/10 animate-in fade-in slide-in-from-bottom-5">
           <CheckCircle2 className="h-5 w-5 text-purple-500" />
@@ -149,7 +147,6 @@ export default function AdminProductsPage() {
         </div>
       )}
 
-      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
@@ -172,7 +169,6 @@ export default function AdminProductsPage() {
         )}
       </div>
 
-      {/* Filter Tabs & Search */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-200 pb-4">
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
           {[
@@ -221,7 +217,6 @@ export default function AdminProductsPage() {
         </div>
       </div>
 
-      {/* Product List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {filteredProducts.length === 0 ? (
           <div className="col-span-full rounded-2xl border border-slate-200 bg-white py-16 text-center shadow-sm">
@@ -239,7 +234,6 @@ export default function AdminProductsPage() {
               key={product.id}
               className="rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col"
             >
-              {/* Product Thumbnail Banner */}
               <div className="relative h-44 w-full bg-slate-100 overflow-hidden">
                 {product.imageUrl ? (
                   <Image
@@ -255,7 +249,6 @@ export default function AdminProductsPage() {
                   </div>
                 )}
 
-                {/* Status Badge */}
                 <div className="absolute top-3 left-3">
                   <span
                     className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase shadow-sm ${
@@ -284,13 +277,11 @@ export default function AdminProductsPage() {
                   </span>
                 </div>
 
-                {/* Price Pill */}
                 <div className="absolute bottom-3 right-3 rounded-lg bg-slate-900/80 px-2.5 py-1 text-xs font-black text-white backdrop-blur">
                   ৳{product.price.toLocaleString()}
                 </div>
               </div>
 
-              {/* Card Body */}
               <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
                 <div>
                   <span className="text-[10px] font-bold text-purple-500 uppercase tracking-wider">
@@ -323,7 +314,6 @@ export default function AdminProductsPage() {
                   )}
                 </div>
 
-                {/* Moderation Controls Footer */}
                 <div className="border-t border-slate-100 pt-3 flex items-center justify-between gap-2">
                   <button
                     onClick={() => setPreviewProduct(product)}
@@ -334,7 +324,6 @@ export default function AdminProductsPage() {
                   </button>
 
                   <div className="flex items-center gap-1.5">
-                    {/* Reject Button */}
                     <button
                       onClick={() => handleOpenReject(product)}
                       className="p-1.5 rounded-lg border border-slate-200 bg-slate-50 text-rose-600 hover:bg-rose-50 hover:border-rose-200 transition-all"
@@ -343,7 +332,6 @@ export default function AdminProductsPage() {
                       <XCircle className="h-4 w-4" />
                     </button>
 
-                    {/* Approve Button */}
                     <button
                       onClick={() => handleApprove(product)}
                       className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-sm ${
@@ -362,7 +350,6 @@ export default function AdminProductsPage() {
         )}
       </div>
 
-      {/* Preview Modal */}
       {previewProduct && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
@@ -467,7 +454,6 @@ export default function AdminProductsPage() {
         </div>
       )}
 
-      {/* Reject Modal */}
       {rejectModalProduct && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm animate-in fade-in duration-200">
           <form
