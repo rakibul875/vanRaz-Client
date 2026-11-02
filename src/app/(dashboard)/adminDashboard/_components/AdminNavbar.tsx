@@ -12,7 +12,6 @@ export default function AdminNavbar({ onMenuClick }: AdminNavbarProps) {
   return (
     <header className="sticky top-0 z-30 h-16 border-b border-purple-100 bg-white/95 backdrop-blur shadow-sm">
       <div className="flex h-full items-center justify-between px-6">
-        {/* Left Side */}
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             {onMenuClick && (
@@ -40,9 +39,7 @@ export default function AdminNavbar({ onMenuClick }: AdminNavbarProps) {
           <div className="hidden h-6 w-px bg-purple-100 sm:block" />
         </div>
 
-        {/* Right Side */}
         <div className="flex items-center gap-3">
-          {/* View Store */}
           <Link
             href="/"
             className="
@@ -58,7 +55,6 @@ export default function AdminNavbar({ onMenuClick }: AdminNavbarProps) {
             View Store
           </Link>
 
-          {/* Notification */}
           <button
             className="
               relative flex h-9 w-9 items-center justify-center
@@ -73,10 +69,8 @@ export default function AdminNavbar({ onMenuClick }: AdminNavbarProps) {
             <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-purple-600" />
           </button>
 
-          {/* Divider */}
           <div className="mx-1 hidden h-8 w-px bg-purple-100 sm:block" />
 
-          {/* Admin Profile */}
           <div className="flex items-center gap-3">
             <div
               className="
