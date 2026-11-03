@@ -352,7 +352,6 @@ export default function AddProductPage() {
 
   return (
     <div className="mx-auto w-full max-w-5xl">
-      {/* Header */}
       <header className="mb-8">
         <div className="mb-4 flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#0E1B1B] text-[#C08A3E]">
@@ -394,7 +393,6 @@ export default function AddProductPage() {
         )}
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[220px_1fr]">
-          {/* Left rail / progress hint */}
           <aside className="hidden lg:block">
             <div className="sticky top-6">
               <div className="border-l-2 border-slate-200 pl-5">
@@ -442,9 +440,7 @@ export default function AddProductPage() {
             </div>
           </aside>
 
-          {/* Main form */}
           <div className="space-y-6">
-            {/* ───── Basics ───── */}
             <section className="border border-[#DEDACE] bg-white shadow-sm">
               <div className="flex items-center gap-3 border-b border-[#DEDACE] px-5 py-5 sm:px-7">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F4F2EC] text-[#C08A3E]">
@@ -459,7 +455,6 @@ export default function AddProductPage() {
               </div>
 
               <div className="space-y-5 p-5 sm:p-7">
-                {/* Name */}
                 <div>
                   <label className="mb-2 block text-xs font-bold text-slate-700">
                     Product name <span className="ml-1 text-[#C08A3E]">*</span>
@@ -478,7 +473,6 @@ export default function AddProductPage() {
                   )}
                 </div>
 
-                {/* Slug */}
                 <div>
                   <label className="mb-2 block text-xs font-bold text-slate-700">
                     URL slug <span className="ml-1 text-[#C08A3E]">*</span>
@@ -501,7 +495,6 @@ export default function AddProductPage() {
                   )}
                 </div>
 
-                {/* Brand + Category */}
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                   <div>
                     <label className="mb-2 block text-xs font-bold text-slate-700">
@@ -545,7 +538,6 @@ export default function AddProductPage() {
                   </div>
                 </div>
 
-                {/* Price, Discount, Stock */}
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
                   <div>
                     <label className="mb-2 block text-xs font-bold text-slate-700">
@@ -609,7 +601,6 @@ export default function AddProductPage() {
                   </div>
                 </div>
 
-                {/* Description + AI */}
                 <div>
                   <div className="mb-2 flex items-center justify-between gap-3">
                     <label className="block text-xs font-bold text-slate-700">
@@ -645,7 +636,6 @@ export default function AddProductPage() {
               </div>
             </section>
 
-            {/* ───── Media ───── */}
             <section className="border border-[#DEDACE] bg-white shadow-sm">
               <div className="flex items-center gap-3 border-b border-[#DEDACE] px-5 py-5 sm:px-7">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F4F2EC] text-[#C08A3E]">
@@ -698,7 +688,6 @@ export default function AddProductPage() {
                           key={`${img}-${idx}`}
                           className="group relative h-24 w-24 overflow-hidden rounded-xl border border-[#DEDACE] bg-slate-100"
                         >
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={img}
                             alt={`Product ${idx + 1}`}
@@ -732,7 +721,6 @@ export default function AddProductPage() {
               </div>
             </section>
 
-            {/* ───── Promotions ───── */}
             <section className="border border-[#DEDACE] bg-white shadow-sm">
               <div className="flex items-center gap-3 border-b border-[#DEDACE] px-5 py-5 sm:px-7">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#F4F2EC] text-[#C08A3E]">
@@ -836,7 +824,6 @@ export default function AddProductPage() {
               </div>
             </section>
 
-            {/* ───── Review ───── */}
             <section className="flex gap-4 border border-[#DEDACE] bg-[#F8F7F3] p-5 sm:p-7">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
                 <Check className="h-4 w-4" />
@@ -853,7 +840,6 @@ export default function AddProductPage() {
               </div>
             </section>
 
-            {/* ───── Actions ───── */}
             <div className="flex flex-col-reverse gap-3 border-t border-[#DEDACE] pt-6 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-[11px] text-[#9A9E96]">
                 Fields marked <span className="text-[#C08A3E]">*</span> are
