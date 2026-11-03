@@ -32,10 +32,8 @@ export default function Sidebar({
   const pathname = usePathname();
   const router = useRouter();
 
-  // Fetch live session details if available
   const { data: session } = authClient.useSession();
 
-  // Lock body scroll on mobile drawer opening
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -48,7 +46,6 @@ export default function Sidebar({
     };
   }, [isOpen]);
 
-  // Handle escape key to close mobile drawer
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen && onClose) {
@@ -117,7 +114,6 @@ export default function Sidebar({
 
   return (
     <>
-      {/* Mobile Backdrop Overlay */}
       {isOpen && (
         <div
           aria-hidden="true"
@@ -126,7 +122,6 @@ export default function Sidebar({
         />
       )}
 
-      {/* Sidebar Container */}
       <aside
         className={`
           fixed inset-y-0 left-0 z-50 flex w-72 flex-col
@@ -136,7 +131,6 @@ export default function Sidebar({
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
-        {/* Header */}
         <div className="flex h-16 items-center justify-between border-b border-purple-100 px-5">
           <Link href="/" onClick={onClose} className="flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-600 text-sm font-bold text-white shadow-sm shadow-purple-600/30">
@@ -153,7 +147,6 @@ export default function Sidebar({
             </div>
           </Link>
 
-          {/* Mobile Close Button */}
           <button
             type="button"
             onClick={onClose}
@@ -164,7 +157,6 @@ export default function Sidebar({
           </button>
         </div>
 
-        {/* Navigation Section */}
         <div className="flex-1 overflow-y-auto px-4 py-6">
           <p className="mb-3 px-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-purple-400">
             Menu
@@ -217,9 +209,7 @@ export default function Sidebar({
           </nav>
         </div>
 
-        {/* Bottom Section / User Controls */}
         <div className="space-y-3 border-t border-purple-100 p-4">
-          {/* Account Details Widget */}
           <div className="rounded-xl border border-purple-100 bg-purple-50/50 p-3">
             <p className="text-[11px] font-medium text-gray-500">
               Signed in as
@@ -232,7 +222,6 @@ export default function Sidebar({
             </p>
           </div>
 
-          {/* Sign Out Button */}
           <button
             type="button"
             onClick={handleSignOut}
