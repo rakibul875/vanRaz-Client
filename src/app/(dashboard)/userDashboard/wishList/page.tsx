@@ -113,7 +113,6 @@ export default function WishlistPage() {
 
     setRemovingId(productId);
 
-    // Optimistic update
     setWishlist((prev) => prev.filter((item) => item._id !== productId));
 
     try {
@@ -177,7 +176,6 @@ export default function WishlistPage() {
   return (
     <main className="min-h-screen bg-slate-50/50 px-4 py-8 text-gray-900 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        {/* Header */}
         <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-purple-100 bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-50 text-purple-600 border border-purple-100">
@@ -207,7 +205,6 @@ export default function WishlistPage() {
           </div>
         </div>
 
-        {/* Loading State */}
         {loading && (
           <div className="flex flex-col items-center justify-center rounded-2xl border border-purple-100 bg-white px-6 py-20 shadow-sm">
             <Loader2 className="h-8 w-8 animate-spin text-purple-600" />
@@ -218,7 +215,6 @@ export default function WishlistPage() {
           </div>
         )}
 
-        {/* Products Grid */}
         {!loading && wishlist.length > 0 && (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {wishlist.map((item) => {
@@ -237,7 +233,6 @@ export default function WishlistPage() {
                   className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-purple-100 bg-white shadow-sm transition-all duration-300 hover:border-purple-200 hover:shadow-md"
                 >
                   <div>
-                    {/* Image Area */}
                     <div className="relative">
                       <Link
                         href={`/products/${item._id}`}
@@ -257,7 +252,6 @@ export default function WishlistPage() {
                           </div>
                         )}
 
-                        {/* Badges */}
                         <div className="absolute left-3 top-3 flex flex-col gap-1.5">
                           {available ? (
                             <span className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-200 bg-white/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-emerald-700 backdrop-blur-sm shadow-sm">
@@ -278,7 +272,6 @@ export default function WishlistPage() {
                           )}
                         </div>
 
-                        {/* Flash Sale Badge */}
                         {hasFlashSale && (
                           <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-lg border border-amber-200 bg-amber-50/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-amber-800 backdrop-blur-sm shadow-sm">
                             <Zap className="h-3 w-3 fill-amber-500 text-amber-500" />
@@ -287,7 +280,6 @@ export default function WishlistPage() {
                         )}
                       </Link>
 
-                      {/* Quick Delete Button */}
                       <button
                         type="button"
                         aria-label="Remove from wishlist"
@@ -303,7 +295,6 @@ export default function WishlistPage() {
                       </button>
                     </div>
 
-                    {/* Information */}
                     <div className="p-5">
                       <p className="text-[10px] font-bold uppercase tracking-wider text-purple-600">
                         {item.brand || "VenRaz"}
@@ -315,7 +306,6 @@ export default function WishlistPage() {
                         </h2>
                       </Link>
 
-                      {/* Price Section */}
                       <div className="mt-4 flex items-baseline justify-between gap-2 border-t border-purple-100/60 pt-3">
                         <div>
                           <p className="text-xl font-extrabold tracking-tight text-gray-900">
@@ -336,7 +326,6 @@ export default function WishlistPage() {
                     </div>
                   </div>
 
-                  {/* Action Button */}
                   <div className="p-5 pt-0">
                     <button
                       type="button"
@@ -346,12 +335,10 @@ export default function WishlistPage() {
                     >
                       {available ? (
                         <>
-                          {/* Standard Text */}
                           <span className="transition-transform duration-150 group-hover/btn:-translate-y-8">
                             Add to Cart
                           </span>
 
-                          {/* Hover Cart Icon Animation (Bottom to Top) */}
                           <span className="absolute flex items-center justify-center translate-y-8 transition-transform duration-150 ease-out group-hover/btn:translate-y-0">
                             <ShoppingCart className="h-4 w-4" />
                           </span>
@@ -367,7 +354,6 @@ export default function WishlistPage() {
           </div>
         )}
 
-        {/* Empty State */}
         {!loading && wishlist.length === 0 && (
           <div className="flex flex-col items-center justify-center rounded-2xl border border-purple-100 bg-white px-6 py-20 text-center shadow-sm">
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-50 text-purple-600 border border-purple-100">
