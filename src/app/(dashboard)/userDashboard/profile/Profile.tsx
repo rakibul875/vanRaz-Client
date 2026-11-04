@@ -13,7 +13,6 @@ export default function Profile() {
 
   return (
     <div className="max-w-4xl space-y-8 mx-auto">
-      {/* Page Header */}
       <div>
         <h2 className="text-2xl font-bold text-gray-900">Account Settings</h2>
         <p className="mt-1 text-sm text-gray-500">
@@ -22,7 +21,6 @@ export default function Profile() {
         </p>
       </div>
 
-      {/* User Overview Card */}
       <div className="flex items-center gap-6 rounded-2xl border border-purple-100 bg-white p-6 shadow-sm">
         <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-purple-600 text-2xl font-bold text-white shadow-sm shadow-purple-600/30">
           {initial}
@@ -36,7 +34,6 @@ export default function Profile() {
         </div>
       </div>
 
-      {/* Section 1: Personal Details */}
       <div className="rounded-2xl border border-purple-100 bg-white shadow-sm">
         <div className="flex items-center gap-3 border-b border-purple-100 p-6">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
@@ -85,7 +82,6 @@ export default function Profile() {
         </form>
       </div>
 
-      {/* Section 2: Password & Security */}
       <div className="rounded-2xl border border-purple-100 bg-white shadow-sm">
         <div className="flex items-center gap-3 border-b border-purple-100 p-6">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
@@ -143,7 +139,6 @@ export default function Profile() {
         </form>
       </div>
 
-      {/* Section 3: Preferences */}
       <div className="rounded-2xl border border-purple-100 bg-white shadow-sm">
         <div className="flex items-center gap-3 border-b border-purple-100 p-6">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
