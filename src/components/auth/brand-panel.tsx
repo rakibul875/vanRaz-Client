@@ -17,7 +17,6 @@ export default function BrandPanel({
 }) {
   return (
     <div className="relative hidden lg:flex lg:w-[44%] flex-col justify-between overflow-hidden bg-[#0E1B1B] px-12 py-12 text-[#FBFAF7]">
-      {/* fine grain texture, kept very quiet */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
@@ -49,7 +48,6 @@ export default function BrandPanel({
           {body}
         </p>
 
-        {/* Signature growth-line graphic */}
         <div className="mt-10 w-full max-w-sm">
           <svg
             viewBox="0 0 360 120"
