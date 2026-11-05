@@ -295,7 +295,6 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div>
         <h2 className="text-2xl font-bold text-gray-900">
           Welcome back, {session?.user?.name || "Customer"} 👋
@@ -306,7 +305,6 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      {/* My Shop Panel */}
       <div className="overflow-hidden rounded-2xl border border-purple-100 bg-white shadow-sm">
         <div className="flex flex-col gap-3 border-b border-purple-100 p-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
@@ -356,7 +354,6 @@ export default function DashboardPage() {
           ) : shop ? (
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
               {shop.images?.[0] ? (
-                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={shop.images[0]}
                   alt={shop.name}
@@ -446,7 +443,6 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {statCards.map((stat) => {
           const Icon = stat.icon;
@@ -474,7 +470,6 @@ export default function DashboardPage() {
         })}
       </div>
 
-      {/* Recent Orders */}
       <div className="overflow-hidden rounded-2xl border border-purple-100 bg-white shadow-sm">
         <div className="flex items-center justify-between border-b border-purple-100 p-5">
           <h3 className="font-semibold text-gray-900">Recent Purchases</h3>
@@ -555,7 +550,6 @@ export default function DashboardPage() {
         )}
       </div>
 
-      {/* Delete Shop Confirmation Modal */}
       {showDeleteModal && shop && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/50 p-4 backdrop-blur-sm"
