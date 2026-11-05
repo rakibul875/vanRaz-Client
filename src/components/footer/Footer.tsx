@@ -30,14 +30,11 @@ const footerSections = [
 export default function Footer() {
   return (
     <footer className="border-t border-purple-950/20 bg-purple-950 text-white relative overflow-hidden">
-      {/* Decorative Subtle Background Glow Effect */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#7E22CE]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-6 py-16">
-        {/* Main Footer */}
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Brand & Bio */}
           <div className="space-y-4">
             <Link
               href="/"
@@ -54,7 +51,6 @@ export default function Footer() {
               and modern tech accessories.
             </p>
 
-            {/* Contact Information */}
             <div className="space-y-3 text-sm text-purple-200/70 pt-2">
               <div className="flex items-center gap-2.5 transition-colors duration-200 hover:text-white">
                 <Mail className="h-4 w-4 text-[#7E22CE]" />
@@ -73,7 +69,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Footer Sections */}
           {footerSections.map((section) => (
             <div key={section.title} className="space-y-4">
               <h3 className="text-base font-bold tracking-wide text-white uppercase">
@@ -98,7 +93,6 @@ export default function Footer() {
             </div>
           ))}
 
-          {/* Newsletter Subscription */}
           <div className="space-y-4">
             <h3 className="text-base font-bold tracking-wide text-white uppercase">
               Newsletter
@@ -125,16 +119,13 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="my-10 border-t border-purple-900/50" />
 
-        {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-between gap-5 md:flex-row">
           <p className="text-sm text-purple-200/60">
             © {new Date().getFullYear()} VenRaz. All rights reserved.
           </p>
 
-          {/* Social Icons with Interactive Hover Animations */}
           <div className="flex items-center gap-3">
             <Link
               href="#"
