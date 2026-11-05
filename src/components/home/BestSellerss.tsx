@@ -4,10 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-/* =========================================================
-   TYPES
-   ========================================================= */
-
 type Product = {
   _id: string;
   name: string;
@@ -38,15 +34,7 @@ type Category = {
   products: Product[];
 };
 
-/* =========================================================
-   FALLBACK IMAGE
-   ========================================================= */
-
 const FALLBACK_IMAGE = "/placeholder.svg";
-
-/* =========================================================
-   PRODUCT IMAGE HELPER
-   ========================================================= */
 
 function getProductImage(images?: string[]) {
   const image = images?.[0];
@@ -58,10 +46,6 @@ function getProductImage(images?: string[]) {
   return image;
 }
 
-/* =========================================================
-   OLD PRICE CALCULATION
-   ========================================================= */
-
 function getOldPrice(price: number, discount?: number) {
   if (!discount || discount <= 0 || discount >= 100) {
     return price;
@@ -69,10 +53,6 @@ function getOldPrice(price: number, discount?: number) {
 
   return price / (1 - discount / 100);
 }
-
-/* =========================================================
-   PRODUCT CARD COMPONENT (WHITE & PURPLE)
-   ========================================================= */
 
 function ProductCard({ product }: { product: Product }) {
   const price = Number(product.price || 0);
@@ -88,7 +68,6 @@ function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="group flex min-h-[190px] items-center gap-4 rounded-2xl border border-purple-100 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-purple-300 hover:shadow-lg hover:shadow-purple-500/5 sm:gap-6 md:gap-8 dark:border-purple-900/40 dark:bg-slate-900">
-      {/* Product Image Wrapper */}
       <div className="relative flex h-[130px] w-[120px] shrink-0 items-center justify-center overflow-hidden rounded-xl bg-purple-50/70 sm:h-[145px] sm:w-[145px] dark:bg-slate-800">
         <Image
           src={imgSrc}
@@ -101,9 +80,7 @@ function ProductCard({ product }: { product: Product }) {
         />
       </div>
 
-      {/* Product Information */}
       <div className="flex min-w-0 flex-1 flex-col justify-center">
-        {/* Name */}
         <h3 className="line-clamp-2 max-w-[330px] text-[14px] font-semibold leading-[1.55] text-purple-950 sm:text-[15px] dark:text-purple-100">
           <Link
             href={`/shop-details/${product._id}`}
@@ -113,7 +90,6 @@ function ProductCard({ product }: { product: Product }) {
           </Link>
         </h3>
 
-        {/* Rating Stars */}
         <div className="mt-2 flex items-center gap-2 sm:gap-3">
           <div
             className="flex items-center text-[16px] leading-none text-amber-400 sm:text-[18px]"
@@ -129,7 +105,6 @@ function ProductCard({ product }: { product: Product }) {
           </span>
         </div>
 
-        {/* Pricing */}
         <div className="mt-3 flex flex-wrap items-center gap-2 sm:mt-4">
           <span className="text-[17px] font-bold text-purple-950 sm:text-[20px] dark:text-white">
             ${price.toFixed(2)}
@@ -142,7 +117,6 @@ function ProductCard({ product }: { product: Product }) {
           ) : null}
         </div>
 
-        {/* Stock */}
         <div className="mt-2 text-[12px] font-semibold text-emerald-600 sm:mt-3 sm:text-[13px] dark:text-emerald-400">
           {product.stock && product.stock > 0
             ? `In Stock • ${product.stock} available`
@@ -152,10 +126,6 @@ function ProductCard({ product }: { product: Product }) {
     </div>
   );
 }
-
-/* =========================================================
-   SKELETON COMPONENT
-   ========================================================= */
 
 function ProductSkeleton() {
   return (
@@ -170,19 +140,11 @@ function ProductSkeleton() {
   );
 }
 
-/* =========================================================
-   MAIN BEST SELLERS COMPONENT
-   ========================================================= */
-
 export default function BestSellers() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [activeTab, setActiveTab] = useState("best-deals");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
-  /* =======================================================
-     FETCH API DATA
-     ======================================================= */
 
   useEffect(() => {
     let isMounted = true;
@@ -276,9 +238,7 @@ export default function BestSellers() {
   return (
     <section className="w-full overflow-hidden bg-purple-50/40 py-12 lg:py-14 dark:bg-slate-950">
       <div className="mx-auto max-w-[1860px] px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
         <div className="mb-10 flex flex-col gap-6 xl:flex-row xl:items-center xl:justify-between">
-          {/* Title */}
           <div className="relative shrink-0">
             <h2 className="text-[32px] font-bold leading-tight tracking-tight text-purple-950 sm:text-[40px] dark:text-purple-100">
               Best Sellers
@@ -288,7 +248,6 @@ export default function BestSellers() {
             </div>
           </div>
 
-          {/* Category Tabs */}
           <div
             className="flex flex-wrap items-center justify-start gap-2.5 xl:justify-end"
             role="tablist"
@@ -316,7 +275,6 @@ export default function BestSellers() {
           </div>
         </div>
 
-        {/* Loading Skeletons */}
         {loading && (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 2xl:grid-cols-3">
             {Array.from({ length: 6 }).map((_, i) => (
@@ -325,7 +283,6 @@ export default function BestSellers() {
           </div>
         )}
 
-        {/* Error State */}
         {!loading && error && (
           <div className="flex min-h-[300px] items-center justify-center rounded-2xl border border-dashed border-purple-200 bg-purple-50/50 p-6 text-center dark:border-purple-900/40 dark:bg-purple-950/20">
             <div>
@@ -343,7 +300,6 @@ export default function BestSellers() {
           </div>
         )}
 
-        {/* Empty State */}
         {!loading &&
           !error &&
           (!activeCategory || activeCategory.products.length === 0) && (
@@ -354,7 +310,6 @@ export default function BestSellers() {
             </div>
           )}
 
-        {/* Product Grid */}
         {!loading &&
           !error &&
           activeCategory &&
