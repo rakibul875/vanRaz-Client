@@ -46,14 +46,12 @@ export default function BentoPromoSection() {
     <section className="w-full bg-purple-50/50 py-12 transition-colors duration-300 dark:bg-slate-950">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-5 md:grid-cols-12">
-          {/* ================= CARD 1: MORE PRODUCTS ================= */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.05 }}
             className="relative flex flex-col justify-between rounded-3xl border border-purple-100 bg-white p-6 shadow-sm transition-all duration-300 hover:border-purple-200 hover:shadow-md dark:border-purple-900/40 dark:bg-slate-900 md:col-span-4"
           >
-            {/* Header */}
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-xl font-bold tracking-tight text-purple-950 dark:text-purple-100">
@@ -64,7 +62,6 @@ export default function BentoPromoSection() {
                 </p>
               </div>
 
-              {/* Heart Badge */}
               <button
                 type="button"
                 aria-label="Add to favorites"
@@ -74,7 +71,6 @@ export default function BentoPromoSection() {
               </button>
             </div>
 
-            {/* Product Thumbnails */}
             <div className="mt-8 flex items-center justify-between gap-3">
               {PRODUCTS.map((item) => (
                 <div
@@ -93,14 +89,12 @@ export default function BentoPromoSection() {
             </div>
           </motion.div>
 
-          {/* ================= CARD 2: DOWNLOADS & REVIEWS ================= */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.1 }}
             className="relative flex flex-col items-center justify-between rounded-3xl border border-purple-100 bg-white p-6 shadow-sm transition-all duration-300 hover:border-purple-200 hover:shadow-md dark:border-purple-900/40 dark:bg-slate-900 md:col-span-3"
           >
-            {/* User Avatars */}
             <div className="flex -space-x-2 overflow-hidden">
               {AVATARS.map((avatar) => (
                 <Image
@@ -114,7 +108,6 @@ export default function BentoPromoSection() {
               ))}
             </div>
 
-            {/* Purple Stats Circle */}
             <div className="my-5 flex h-28 w-28 flex-col items-center justify-center rounded-full bg-gradient-to-tr from-purple-700 to-purple-500 text-white shadow-lg shadow-purple-500/25">
               <span className="text-2xl font-black leading-tight">5m+</span>
               <span className="text-[11px] font-medium opacity-90">
@@ -122,7 +115,6 @@ export default function BentoPromoSection() {
               </span>
             </div>
 
-            {/* Review Badge */}
             <div className="flex items-center gap-1.5 rounded-full border border-purple-100 bg-purple-50/60 px-4 py-1.5 shadow-sm dark:border-purple-900/50 dark:bg-purple-950/50">
               <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
               <span className="text-xs font-bold text-purple-950 dark:text-purple-200">
@@ -131,14 +123,12 @@ export default function BentoPromoSection() {
             </div>
           </motion.div>
 
-          {/* ================= CARD 3: FEATURED BANNER ================= */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.15 }}
             className="relative flex min-h-[220px] overflow-hidden rounded-3xl border border-purple-100 bg-white p-6 shadow-sm transition-all duration-300 hover:border-purple-200 hover:shadow-md dark:border-purple-900/40 dark:bg-slate-900 md:col-span-5"
           >
-            {/* Left Column Content */}
             <div className="z-10 flex w-1/2 flex-col justify-between pr-2">
               <div>
                 <div className="inline-flex items-center gap-1.5 rounded-full border border-purple-200/80 bg-purple-50/80 px-3 py-1 backdrop-blur-md dark:border-purple-800 dark:bg-purple-950/80">
@@ -153,7 +143,6 @@ export default function BentoPromoSection() {
                 </h3>
               </div>
 
-              {/* Overlapping Audio Avatars */}
               <div className="mt-4 flex -space-x-3">
                 <div className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-white ring-2 ring-purple-100 dark:border-slate-900 dark:ring-purple-900/50">
                   <Image
@@ -176,7 +165,6 @@ export default function BentoPromoSection() {
               </div>
             </div>
 
-            {/* Right Column Image & Overlay Action */}
             <div className="relative w-1/2 overflow-hidden rounded-2xl bg-purple-50 dark:bg-purple-950/40">
               <Image
                 src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=600&q=80"
@@ -186,7 +174,6 @@ export default function BentoPromoSection() {
                 className="object-cover object-center transition-transform duration-500 hover:scale-105"
               />
 
-              {/* Arrow Link Button */}
               <Link
                 href="/shop"
                 aria-label="Explore Product"
@@ -195,7 +182,6 @@ export default function BentoPromoSection() {
                 <ArrowUpRight className="h-5 w-5" />
               </Link>
 
-              {/* Rating Chip */}
               <div className="absolute bottom-2 right-2 z-10 flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1 backdrop-blur-md shadow-sm dark:bg-slate-900/90">
                 <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
                 <span className="text-xs font-bold text-purple-950 dark:text-purple-100">
