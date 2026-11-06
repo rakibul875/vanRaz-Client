@@ -5,10 +5,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import bannerImg from "../../../public/assets/download (4).jpg";
 
-/* =========================================================
-   TYPES
-   ========================================================= */
-
 type CategoryItem = {
   _id: string;
   name: string;
@@ -30,15 +26,7 @@ type CategoryApiResponse = {
       };
 };
 
-/* =========================================================
-   FALLBACK IMAGE
-   ========================================================= */
-
 const FALLBACK_IMAGE = "/placeholder.svg";
-
-/* =========================================================
-   IMAGE HELPER
-   ========================================================= */
 
 const getCategoryImage = (image?: string) => {
   if (!image) {
@@ -52,18 +40,10 @@ const getCategoryImage = (image?: string) => {
   return image;
 };
 
-/* =========================================================
-   MAIN COMPONENT
-   ========================================================= */
-
 export default function Category() {
   const [categories, setCategories] = useState<CategoryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
-  /* =======================================================
-     FETCH CATEGORIES
-     ======================================================= */
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -94,10 +74,6 @@ export default function Category() {
         if (!result.success) {
           throw new Error(result.message || "Failed to load categories");
         }
-
-        /* =================================================
-           NORMALIZE API DATA
-           ================================================= */
 
         let categoryData: CategoryItem[] = [];
 
@@ -153,10 +129,6 @@ export default function Category() {
     fetchCategories();
   }, []);
 
-  /* =======================================================
-     LOADING SKELETON
-     ======================================================= */
-
   if (loading) {
     return (
       <section className="w-full bg-purple-50/40 py-12 dark:bg-slate-950">
@@ -187,17 +159,9 @@ export default function Category() {
     );
   }
 
-  /* =======================================================
-     MAIN RENDER
-     ======================================================= */
-
   return (
     <section className="w-full bg-purple-50/40 py-12 dark:bg-slate-950">
       <div className="mx-auto max-w-[1800px] px-5">
-        {/* =================================================
-            HEADER
-            ================================================= */}
-
         <div className="flex items-center justify-between border-b border-purple-100 pb-4 dark:border-purple-900/40">
           <div className="relative">
             <h2 className="text-[32px] font-bold leading-none text-purple-950 dark:text-purple-100">
@@ -213,10 +177,6 @@ export default function Category() {
             Explore All
           </Link>
         </div>
-
-        {/* =================================================
-            ERROR
-            ================================================= */}
 
         {error && (
           <div className="flex min-h-[300px] items-center justify-center">
@@ -237,10 +197,6 @@ export default function Category() {
           </div>
         )}
 
-        {/* =================================================
-            EMPTY
-            ================================================= */}
-
         {!error && categories.length === 0 && (
           <div className="flex min-h-[300px] items-center justify-center">
             <div className="text-center">
@@ -254,13 +210,8 @@ export default function Category() {
           </div>
         )}
 
-        {/* =================================================
-            LAYOUT: LEFT BANNER + RIGHT CATEGORY GRID
-            ================================================= */}
-
         {!error && categories.length > 0 && (
           <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-4">
-            {/* LEFT SIDE BANNER */}
             <div className="group relative flex min-h-[320px] flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950 p-8 text-white shadow-lg shadow-purple-950/10 lg:min-h-[auto]">
               <Image
                 src={bannerImg}
@@ -288,7 +239,6 @@ export default function Category() {
               </div>
             </div>
 
-            {/* RIGHT SIDE CATEGORY GRID */}
             <div className="grid grid-cols-1 overflow-hidden rounded-2xl border border-purple-100 bg-white sm:grid-cols-2 lg:col-span-3 lg:grid-cols-3 dark:border-purple-900/40 dark:bg-slate-900">
               {categories.slice(0, 6).map((category, index) => {
                 const productCount =
@@ -306,7 +256,6 @@ export default function Category() {
                     href={`/shop?category=${categoryId}`}
                     className="group flex min-h-[160px] items-center gap-4 border-b border-r border-purple-100 bg-white px-6 transition-all duration-300 hover:bg-purple-50/60 sm:px-8 dark:border-purple-900/40 dark:bg-slate-900 dark:hover:bg-purple-950/20"
                   >
-                    {/* IMAGE */}
                     <div className="flex h-[84px] w-[84px] shrink-0 items-center justify-center overflow-hidden rounded-xl bg-purple-50 dark:bg-slate-800">
                       <Image
                         src={getCategoryImage(category.image)}
@@ -317,7 +266,6 @@ export default function Category() {
                       />
                     </div>
 
-                    {/* CONTENT */}
                     <div className="min-w-0">
                       <h3 className="text-[16px] font-semibold leading-6 text-purple-950 transition-colors group-hover:text-purple-600 dark:text-purple-100 dark:group-hover:text-purple-400">
                         {category.name}
