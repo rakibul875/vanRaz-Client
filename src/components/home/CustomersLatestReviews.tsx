@@ -79,14 +79,12 @@ export default function CustomerReviews() {
         {/* Heading Container */}
         <div className="mx-auto max-w-[1860px] px-5 lg:px-8">
           <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
-            {/* Title */}
             <div>
               <h2 className="text-center text-[26px] font-bold leading-tight text-purple-950 dark:text-white sm:text-left sm:text-[30px]">
                 Customers Latest Reviews
               </h2>
             </div>
 
-            {/* Explore */}
             <div className="text-center sm:text-right">
               <a
                 href="/contact"
@@ -97,11 +95,9 @@ export default function CustomerReviews() {
             </div>
           </div>
 
-          {/* Bottom Line */}
           <div className="mt-5 h-px w-full bg-purple-200/80" />
         </div>
 
-        {/* Slider Container */}
         <div className="mx-auto mt-10 max-w-[1860px] px-5 lg:px-8">
           <Swiper
             modules={[Pagination]}
@@ -139,7 +135,6 @@ export default function CustomerReviews() {
               <SwiperSlide key={testimonial.id} className="h-auto">
                 <div className="flex h-full flex-col justify-between rounded-xl border border-purple-100 bg-white p-6 shadow-sm shadow-purple-900/5 transition-shadow hover:shadow-md hover:shadow-purple-950/10 sm:p-8">
                   <div>
-                    {/* Quote + Rating */}
                     <div className="mb-5 flex items-center justify-between">
                       <div>
                         <Image
@@ -162,13 +157,11 @@ export default function CustomerReviews() {
                       </div>
                     </div>
 
-                    {/* Review Text */}
                     <p className="mb-6 text-[15px] leading-7 text-purple-900/80">
                       {testimonial.review}
                     </p>
                   </div>
 
-                  {/* Profile Details */}
                   <div className="flex items-center gap-4 border-t border-purple-50 pt-4">
                     <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 ring-purple-100">
                       <Image
@@ -195,7 +188,6 @@ export default function CustomerReviews() {
             ))}
           </Swiper>
 
-          {/* Custom Pagination Container */}
           <div className="testimonial-pagination mt-8 flex justify-center gap-2" />
         </div>
       </section>
