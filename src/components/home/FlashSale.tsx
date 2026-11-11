@@ -25,10 +25,6 @@ import type { Swiper as SwiperType } from "swiper";
 
 import "swiper/css";
 
-/* =========================================================
-   TYPES
-   ========================================================= */
-
 type Product = {
   _id: string;
   name: string;
@@ -53,10 +49,6 @@ type ApiResponse = {
   message?: string;
   data?: HomeSectionsData | Product[];
 };
-
-/* =========================================================
-   FALLBACK IMAGE & HELPERS
-   ========================================================= */
 
 const FALLBACK_IMAGE = "/placeholder.svg";
 const SALE_END_DATE = "2026-12-12T23:59:59";
@@ -108,10 +100,6 @@ function getRatingStars(rating = 0) {
   );
 }
 
-/* =========================================================
-   PRODUCT CARD COMPONENT
-   ========================================================= */
-
 function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const router = useRouter();
@@ -157,7 +145,6 @@ function ProductCard({ product }: { product: Product }) {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className="group relative flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-md shadow-purple-900/5 border border-purple-100"
     >
-      {/* IMAGE CONTAINER */}
       <div className="relative mx-2 mt-2 flex h-[243px] items-center justify-center overflow-hidden rounded-lg bg-[#FAF5FF]">
         <Image
           src={image}
@@ -169,14 +156,12 @@ function ProductCard({ product }: { product: Product }) {
           }
         />
 
-        {/* DISCOUNT BADGE */}
         {product.discount !== undefined && product.discount > 0 && (
           <span className="absolute left-0 top-0 rounded-br-[16px] rounded-tl-[7px] bg-[#7E22CE] px-3 py-1 text-[14px] font-bold text-white shadow-sm">
             -{product.discount}%
           </span>
         )}
 
-        {/* ACTION BUTTONS */}
         <div className="absolute right-3 top-3 flex translate-x-10 flex-col gap-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
           <motion.button
             whileHover={{ scale: 1.1 }}
@@ -220,7 +205,6 @@ function ProductCard({ product }: { product: Product }) {
         </div>
       </div>
 
-      {/* CARD CONTENT */}
       <div className="flex flex-1 flex-col px-6 pb-6 pt-5">
         <h3 className="min-h-[52px] text-[16px] font-semibold leading-[1.45] text-purple-950">
           <Link
@@ -231,7 +215,6 @@ function ProductCard({ product }: { product: Product }) {
           </Link>
         </h3>
 
-        {/* RATING */}
         <div className="mt-2 flex items-center gap-3">
           <div
             className="flex gap-[1px] text-[19px] leading-none text-purple-600"
@@ -244,7 +227,6 @@ function ProductCard({ product }: { product: Product }) {
           <span className="text-[13px] text-purple-400">({rating})</span>
         </div>
 
-        {/* PRICE */}
         <div className="mt-3 flex items-center gap-2">
           <span className="text-[17px] font-bold text-purple-950">
             ${price.toFixed(2)}
@@ -256,7 +238,6 @@ function ProductCard({ product }: { product: Product }) {
           )}
         </div>
 
-        {/* STOCK STATUS */}
         <div className="mt-4 flex items-center gap-1.5 text-[13px]">
           <Check
             size={15}
@@ -275,7 +256,6 @@ function ProductCard({ product }: { product: Product }) {
           )}
         </div>
 
-        {/* ADD TO CART BUTTON */}
         <motion.button
           whileTap={stock > 0 ? { scale: 0.98 } : {}}
           type="button"
@@ -314,10 +294,6 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
-/* =========================================================
-   MAIN FLASH SALE COMPONENT
-   ========================================================= */
-
 export default function FlashSale() {
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -332,7 +308,6 @@ export default function FlashSale() {
   });
   const [mounted, setMounted] = useState(false);
 
-  /* FETCH FLASH SALE PRODUCTS */
   useEffect(() => {
     const fetchFlashSaleProducts = async () => {
       try {
@@ -395,7 +370,6 @@ export default function FlashSale() {
   return (
     <section className="overflow-hidden bg-[#FAF5FF] dark:bg-[#0b1325] rounded-2xl dark:text-white py-[60px] md:py-[70px]">
       <div className="mx-auto w-full max-w-[1860px] px-5 lg:px-8">
-        {/* HEADER */}
         <div className="mb-8 flex flex-col justify-between gap-7 xl:flex-row xl:items-center">
           <div>
             <h2 className="text-[30px] font-bold leading-none text-purple-950 dark:text-white sm:text-[34px] md:text-[38px]">
@@ -406,7 +380,6 @@ export default function FlashSale() {
             </div>
           </div>
 
-          {/* TIMER & LINK */}
           <div className="flex flex-wrap items-center gap-3">
             <div className="flex items-center gap-2 sm:gap-3">
               <div>
@@ -421,7 +394,6 @@ export default function FlashSale() {
               </span>
             </div>
 
-            {/* COUNTDOWN BOXES WITH MOTION */}
             {[
               { label: "Days", val: time.days },
               { label: "Hours", val: time.hours },
@@ -450,7 +422,6 @@ export default function FlashSale() {
           </div>
         </div>
 
-        {/* LOADING STATE */}
         {loading && (
           <div className="flex min-h-[400px] items-center justify-center">
             <div>
@@ -459,7 +430,6 @@ export default function FlashSale() {
           </div>
         )}
 
-        {/* ERROR STATE */}
         {!loading && error && (
           <div className="flex min-h-[400px] items-center justify-center">
             <div className="text-center">
@@ -475,7 +445,6 @@ export default function FlashSale() {
           </div>
         )}
 
-        {/* EMPTY STATE */}
         {!loading && !error && products.length === 0 && (
           <div className="flex min-h-[400px] items-center justify-center">
             <p className="text-lg text-purple-400">
@@ -484,7 +453,6 @@ export default function FlashSale() {
           </div>
         )}
 
-        {/* SLIDER CONTENT */}
         {!loading && !error && products.length > 0 && (
           <div className="relative mt-8">
             <Swiper
@@ -512,7 +480,6 @@ export default function FlashSale() {
               ))}
             </Swiper>
 
-            {/* PREVIOUS ARROW */}
             <button
               type="button"
               aria-label="Previous products"
@@ -526,7 +493,6 @@ export default function FlashSale() {
               />
             </button>
 
-            {/* NEXT ARROW */}
             <button
               type="button"
               aria-label="Next products"
@@ -542,7 +508,6 @@ export default function FlashSale() {
           </div>
         )}
 
-        {/* MOBILE EXPLORE LINK */}
         <div className="mt-7 text-center md:hidden">
           <Link
             href="/shop"
