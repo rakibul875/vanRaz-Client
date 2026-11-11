@@ -47,16 +47,13 @@ export default function LatestNews() {
       className="overflow-hidden bg-[#FAF5FF] dark:bg-[#0b1325] py-16 lg:py-20"
     >
       <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="mb-6 flex flex-col items-center justify-between gap-4 lg:flex-row">
-          {/* Title */}
           <div className="w-full lg:w-auto">
             <h2 className="text-center text-2xl font-bold leading-tight text-purple-950 dark:text-white sm:text-3xl lg:text-left">
               Latest News & Updates
             </h2>
           </div>
 
-          {/* Explore All */}
           <div className="w-full text-center lg:w-auto lg:text-right">
             <Link
               href="/blog"
@@ -67,17 +64,14 @@ export default function LatestNews() {
           </div>
         </div>
 
-        {/* Bottom Line */}
         <div className="mb-8 h-px w-full bg-purple-200/80" />
 
-        {/* Blog Grid */}
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-4">
           {blogs.map((blog) => (
             <article
               key={blog.id}
               className="group flex flex-col overflow-hidden rounded-xl border border-purple-100 bg-white dark:bg-[#0b1325] p-4 shadow-md shadow-purple-900/5 transition-shadow duration-300 hover:shadow-lg hover:shadow-purple-900/10"
             >
-              {/* Image */}
               <Link
                 href={`/blog/${blog.id}`}
                 className="relative block overflow-hidden rounded-lg bg-[#FAF5FF]"
@@ -91,9 +85,7 @@ export default function LatestNews() {
                 />
               </Link>
 
-              {/* Content */}
               <div className="flex flex-1 flex-col pt-5">
-                {/* Meta */}
                 <div className="mb-3 flex items-center gap-3 text-xs font-medium text-purple-600">
                   <Link
                     href="/blog"
@@ -107,7 +99,6 @@ export default function LatestNews() {
                   <span className="text-purple-400">{blog.date}</span>
                 </div>
 
-                {/* Title */}
                 <h3 className="mb-4 min-h-[56px] text-base font-semibold leading-snug text-purple-950">
                   <Link
                     href={`/blog/${blog.id}`}
@@ -117,7 +108,6 @@ export default function LatestNews() {
                   </Link>
                 </h3>
 
-                {/* Read More */}
                 <div className="mt-auto pt-2">
                   <Link
                     href={`/blog/${blog.id}`}

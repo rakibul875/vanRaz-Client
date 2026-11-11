@@ -17,7 +17,6 @@ export default function HomePage() {
       <Hero />
       <div className="bg-[#f7faff] dark:bg-[#0b1325]">
         <div className="container mx-auto ">
-          {/* <FlashSale></FlashSale> */}
           <Category />
           <TrendingProducts />
 
