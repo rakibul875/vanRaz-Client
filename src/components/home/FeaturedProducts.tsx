@@ -38,10 +38,6 @@ type ApiResponse = {
   };
 };
 
-/* =========================================================
-   PRODUCT IMAGE HELPER
-   ========================================================= */
-
 const getProductImage = (images?: string[]) => {
   const image = images?.[0];
 
@@ -52,10 +48,6 @@ const getProductImage = (images?: string[]) => {
   return image;
 };
 
-/* =========================================================
-   RATING STARS
-   ========================================================= */
-
 const getRatingStars = (rating = 0) => {
   const roundedRating = Math.round(rating);
 
@@ -63,10 +55,6 @@ const getRatingStars = (rating = 0) => {
     index < roundedRating ? "★" : "☆",
   ).join("");
 };
-
-/* =========================================================
-   INDIVIDUAL PRODUCT CARD COMPONENT
-   ========================================================= */
 
 function FeaturedProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
@@ -87,7 +75,6 @@ function FeaturedProductCard({ product }: { product: Product }) {
 
   return (
     <div className="m-4 flex min-h-[500px] flex-col items-center rounded-2xl border border-purple-100 bg-white p-6 shadow-md shadow-purple-900/5 sm:p-8 dark:border-purple-900/40 dark:bg-slate-900 md:flex-row md:p-[25px]">
-      {/* IMAGE */}
       <div className="relative h-full w-full shrink-0 overflow-hidden rounded-xl bg-purple-50/70 dark:bg-slate-800 md:h-[450px] md:w-[53%]">
         <Image
           src={imageUrl}
@@ -99,9 +86,7 @@ function FeaturedProductCard({ product }: { product: Product }) {
         />
       </div>
 
-      {/* CONTENT */}
       <div className="flex flex-1 flex-col justify-center pl-7 md:pl-10">
-        {/* Product Name */}
         <h3 className="max-w-[350px] text-[19px] font-bold leading-[1.45] text-purple-950 dark:text-purple-100 md:text-[23px]">
           <Link
             href={`/shop-details/${product._id}`}
@@ -111,7 +96,6 @@ function FeaturedProductCard({ product }: { product: Product }) {
           </Link>
         </h3>
 
-        {/* RATING */}
         <div className="mt-3 flex flex-wrap items-center gap-3 md:gap-4">
           <span
             className="whitespace-nowrap text-[18px] tracking-[1px] text-amber-400 md:text-[20px]"
@@ -125,7 +109,6 @@ function FeaturedProductCard({ product }: { product: Product }) {
           </span>
         </div>
 
-        {/* PRICE */}
         <div className="mt-2 flex items-center gap-2">
           <span className="text-[19px] font-bold text-purple-950 dark:text-purple-100 md:text-[21px]">
             ${Number(product.price || 0).toFixed(2)}
@@ -138,33 +121,27 @@ function FeaturedProductCard({ product }: { product: Product }) {
           )}
         </div>
 
-        {/* ADD TO CART BUTTON (With Loading & Bottom-to-Top Hover Effect) */}
         <Button
           onClick={handleAddToCart}
           isDisabled={adding}
           className="group/btn relative mt-8 flex h-[51px] w-full items-center justify-center overflow-hidden rounded-xl bg-purple-950 px-6 text-[14px] font-bold uppercase tracking-wide text-white shadow-lg shadow-gray-500 transition-all duration-300 hover:bg-purple-600 disabled:opacity-70 md:px-7 dark:bg-purple-600 dark:hover:bg-purple-500"
         >
-          {/* 1. Loading State */}
           {adding ? (
             <div className="flex items-center gap-2">
               <Loader2 size={18} className="animate-spin" />
               <span>ADDING...</span>
             </div>
           ) : added ? (
-            /* 2. Success State */
             <div className="flex items-center gap-2 text-emerald-300">
               <Check size={18} />
               <span>ADDED!</span>
             </div>
           ) : (
-            /* 3. Normal State + Bottom to Top Animation */
             <>
-              {/* Default Text (Slides Up) */}
               <span className="transition-transform duration-300 ease-out group-hover/btn:-translate-y-12">
                 ADD TO CART
               </span>
 
-              {/* Hover Icon + Text (Slides Up from Bottom) */}
               <span className="absolute flex translate-y-12 items-center justify-center gap-2 transition-transform duration-300 ease-out group-hover/btn:translate-y-0">
                 <ShoppingCart size={18} />
                 <span>ADD TO CART</span>
@@ -177,10 +154,6 @@ function FeaturedProductCard({ product }: { product: Product }) {
   );
 }
 
-/* =========================================================
-   MAIN FEATURED PRODUCTS SECTION
-   ========================================================= */
-
 export default function FeaturedProducts() {
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -188,7 +161,6 @@ export default function FeaturedProducts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  /* FETCH FEATURED PRODUCTS */
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
       try {
@@ -233,7 +205,6 @@ export default function FeaturedProducts() {
     fetchFeaturedProducts();
   }, []);
 
-  /* LOADING STATE */
   if (loading) {
     return (
       <section
@@ -270,14 +241,12 @@ export default function FeaturedProducts() {
     );
   }
 
-  /* MAIN RENDER */
   return (
     <section
       id="shop-sec"
       className="w-full overflow-hidden bg-purple-50/40 py-10 dark:bg-slate-950 md:py-14"
     >
       <div className="mx-auto w-full max-w-[1800px] px-7 md:px-10">
-        {/* HEADER */}
         <div className="flex items-end justify-between">
           <div>
             <h2 className="inline-block px-0.5 pt-1 text-[30px] font-bold leading-[1.15] text-purple-950 dark:text-purple-100 md:text-[40px]">
@@ -295,10 +264,8 @@ export default function FeaturedProducts() {
           </Link>
         </div>
 
-        {/* Purple Header Line */}
         <div className="h-[1px] w-full bg-purple-100 dark:bg-purple-900/40" />
 
-        {/* ERROR STATE */}
         {error && (
           <div className="flex min-h-[500px] items-center justify-center">
             <div className="text-center">
@@ -315,7 +282,6 @@ export default function FeaturedProducts() {
           </div>
         )}
 
-        {/* EMPTY STATE */}
         {!error && products.length === 0 && (
           <div className="flex min-h-[500px] items-center justify-center">
             <p className="text-lg text-purple-900/60 dark:text-purple-300/60">
@@ -324,7 +290,6 @@ export default function FeaturedProducts() {
           </div>
         )}
 
-        {/* SLIDER */}
         {!error && products.length > 0 && (
           <div className="relative mt-8">
             <Swiper
@@ -346,7 +311,6 @@ export default function FeaturedProducts() {
               ))}
             </Swiper>
 
-            {/* PREVIOUS BUTTON */}
             <button
               type="button"
               aria-label="Previous product"
@@ -360,7 +324,6 @@ export default function FeaturedProducts() {
               />
             </button>
 
-            {/* NEXT BUTTON */}
             <button
               type="button"
               aria-label="Next product"
@@ -376,7 +339,6 @@ export default function FeaturedProducts() {
           </div>
         )}
 
-        {/* MOBILE EXPLORE */}
         <div className="mt-6 text-center md:hidden">
           <Link
             href="/shop"
