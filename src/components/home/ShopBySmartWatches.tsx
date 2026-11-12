@@ -413,15 +413,11 @@ export default function SmartWatches() {
     <section className="overflow-hidden bg-[#FAF5FF] dark:bg-[#0b1325] py-16 px-4">
       <div className="mx-auto max-w-[1860px] px-5 lg:px-8">
         <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
-          {/* TITLE */}
-
           <div>
             <h2 className="text-center text-[26px] font-bold leading-tight text-purple-950 sm:text-left sm:text-[30px] dark:text-white">
               Shop By Smart Watches
             </h2>
           </div>
-
-          {/* EXPLORE */}
 
           <div className="text-center sm:text-right">
             <Link
@@ -433,23 +429,11 @@ export default function SmartWatches() {
           </div>
         </div>
 
-        {/* BOTTOM LINE */}
-
         <div className="mt-5 h-px w-full bg-purple-200/80" />
 
-        {/* =================================================
-            CONTENT
-        ================================================= */}
-
         <div className="mt-10 grid grid-cols-1 gap-8 xl:grid-cols-12">
-          {/* =================================================
-              PRODUCT SLIDER
-          ================================================= */}
-
           <div className="min-w-0 xl:col-span-9 2xl:col-span-10">
             <div className="relative">
-              {/* PREVIOUS BUTTON */}
-
               <button
                 type="button"
                 onClick={() => swiperRef.current?.slidePrev()}
@@ -459,8 +443,6 @@ export default function SmartWatches() {
                 <ChevronLeft size={20} />
               </button>
 
-              {/* NEXT BUTTON */}
-
               <button
                 type="button"
                 onClick={() => swiperRef.current?.slideNext()}
@@ -469,10 +451,6 @@ export default function SmartWatches() {
               >
                 <ChevronRight size={20} />
               </button>
-
-              {/* =================================================
-                  SWIPER
-              ================================================= */}
 
               <Swiper
                 onSwiper={(swiper) => {
@@ -526,14 +504,8 @@ export default function SmartWatches() {
             </div>
           </div>
 
-          {/* =================================================
-              COLLECTION BANNER
-          ================================================= */}
-
           <div className="xl:col-span-3 2xl:col-span-2">
             <div className="group relative h-full min-h-[450px] overflow-hidden rounded-xl border border-purple-100 bg-white shadow-sm shadow-purple-900/5">
-              {/* IMAGE */}
-
               <Image
                 src="/assets/collection_1_4.jpg"
                 alt="Apple Watch Series 9"
@@ -542,11 +514,7 @@ export default function SmartWatches() {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
-              {/* OVERLAY */}
-
               <div className="absolute inset-0 bg-gradient-to-b from-purple-950/30 via-transparent to-purple-950/60" />
-
-              {/* CONTENT */}
 
               <div className="absolute left-6 top-7 z-10">
                 <h3 className="max-w-[220px] text-[22px] font-bold leading-7 text-white">
