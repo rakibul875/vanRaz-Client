@@ -26,10 +26,6 @@ import { useRouter } from "next/navigation";
 import { Button } from "@heroui/react";
 import { useCart } from "@/context/CartContext";
 
-/* =========================================================
-   TYPES
-========================================================= */
-
 type Product = {
   _id: string;
   name: string;
@@ -52,15 +48,7 @@ type HomeSectionsResponse = {
   };
 };
 
-/* =========================================================
-   FALLBACK IMAGE
-========================================================= */
-
 const FALLBACK_IMAGE = "/placeholder.svg";
-
-/* =========================================================
-   GET PRODUCT IMAGE
-========================================================= */
 
 function getProductImage(images?: string[]) {
   const image = images?.[0];
@@ -76,10 +64,6 @@ function getProductImage(images?: string[]) {
   return image;
 }
 
-/* =========================================================
-   OLD PRICE
-========================================================= */
-
 function getOldPrice(price: number, discount?: number) {
   if (!discount || discount <= 0 || discount >= 100) {
     return price;
@@ -88,19 +72,11 @@ function getOldPrice(price: number, discount?: number) {
   return price / (1 - discount / 100);
 }
 
-/* =========================================================
-   RATING
-========================================================= */
-
 function getRatingStars(rating = 0) {
   const rounded = Math.round(rating);
 
   return Array.from({ length: 5 }, (_, index) => (index < rounded ? "★" : "☆"));
 }
-
-/* =========================================================
-   PRODUCT CARD
-========================================================= */
 
 export function ProductCard({ product }: { product: Product }) {
   const rating = product.rating ?? 0;
@@ -110,7 +86,6 @@ export function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const oldPrice = getOldPrice(price, product.discount);
 
-  // State for Add To Cart loading & success feedback
   const [adding, setAdding] = useState(false);
   const [added, setAdded] = useState(false);
 
@@ -146,9 +121,6 @@ export function ProductCard({ product }: { product: Product }) {
       transition={{ duration: 0.2 }}
       className="group flex flex-col overflow-hidden rounded-xl border border-purple-100 bg-white p-4 shadow-sm shadow-purple-900/5 transition-shadow hover:shadow-md hover:shadow-purple-950/10"
     >
-      {/* =================================================
-          IMAGE & BADGES
-      ================================================= */}
       <div className="relative flex h-[230px] items-center justify-center overflow-hidden rounded-lg bg-[#FAF5FF]">
         <Image
           src={image}
@@ -157,18 +129,13 @@ export function ProductCard({ product }: { product: Product }) {
           className="h-[200px] w-[200px] object-cover transition-transform duration-500 group-hover:scale-105"
         />
 
-        {/* DISCOUNT */}
         {product.discount !== undefined && product.discount > 0 && (
           <span className="absolute left-0 top-0 rounded-br-xl bg-[#7E22CE] px-3 py-1 text-xs font-semibold text-white shadow-sm">
             -{product.discount}%
           </span>
         )}
 
-        {/* =================================================
-            ACTION BUTTONS (WISHLIST / COMPARE / QUICK VIEW)
-        ================================================= */}
         <div className="absolute right-3 top-3 flex translate-x-10 flex-col gap-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-          {/* Wishlist */}
           <button
             type="button"
             aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
@@ -187,7 +154,6 @@ export function ProductCard({ product }: { product: Product }) {
             )}
           </button>
 
-          {/* Compare */}
           <Link
             href="/compare"
             aria-label="Compare product"
@@ -196,7 +162,6 @@ export function ProductCard({ product }: { product: Product }) {
             <ArrowLeftRight size={17} />
           </Link>
 
-          {/* Quick View */}
           <Link href={`/products/${product._id}`}>
             <button
               type="button"
@@ -209,11 +174,7 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
       </div>
 
-      {/* =================================================
-          CONTENT
-      ================================================= */}
       <div className="flex flex-1 flex-col pt-4">
-        {/* PRODUCT NAME */}
         <h3 className="min-h-[48px] text-[15px] font-semibold leading-6 text-purple-950">
           <Link
             href={`/shop-details/${product._id}`}
@@ -223,7 +184,6 @@ export function ProductCard({ product }: { product: Product }) {
           </Link>
         </h3>
 
-        {/* RATING */}
         <div className="mt-2 flex items-center gap-3">
           <div
             className="flex gap-[1px] text-[16px] leading-none text-amber-500"
@@ -236,7 +196,6 @@ export function ProductCard({ product }: { product: Product }) {
           <span className="text-[13px] text-purple-400">({rating})</span>
         </div>
 
-        {/* PRICE */}
         <div className="mt-3 flex items-center gap-2">
           <span className="text-[17px] font-bold text-purple-950">
             ${price.toFixed(2)}
@@ -249,7 +208,6 @@ export function ProductCard({ product }: { product: Product }) {
           )}
         </div>
 
-        {/* STOCK STATUS */}
         <div className="mt-3 flex items-center gap-1.5 text-[13px]">
           <Check
             size={15}
@@ -262,36 +220,28 @@ export function ProductCard({ product }: { product: Product }) {
           {stock > 0 && <span className="text-purple-950">({stock})</span>}
         </div>
 
-        {/* =================================================
-            ADD TO CART BUTTON (With Hover & Loading Effects)
-        ================================================= */}
         <button
           type="button"
           onClick={handleAddToCart}
           disabled={adding || stock <= 0}
           className="group/btn relative mt-5 flex h-10 w-full items-center justify-center overflow-hidden rounded-lg bg-purple-950 text-[13px] font-semibold uppercase tracking-wide text-white shadow-sm transition-all duration-300 hover:bg-[#7E22CE] disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {/* 1. Loading State */}
           {adding ? (
             <div className="flex items-center gap-2">
               <Loader2 size={16} className="animate-spin" />
               <span>Adding...</span>
             </div>
           ) : added ? (
-            /* 2. Added Success State */
             <div className="flex items-center gap-1.5 text-emerald-300">
               <Check size={16} />
               <span>Added!</span>
             </div>
           ) : (
-            /* 3. Normal State + Bottom to Top Hover Effect */
             <>
-              {/* Default Text (Slides up on Hover) */}
               <span className="transition-transform duration-300 ease-out group-hover/btn:-translate-y-10">
                 Add To Cart
               </span>
 
-              {/* Hover Cart Icon + Text Container (Slides in from Bottom) */}
               <span className="absolute flex translate-y-10 items-center justify-center gap-2 transition-transform duration-300 ease-out group-hover/btn:translate-y-0">
                 <ShoppingCart size={16} />
                 <span>Add To Cart</span>
@@ -304,28 +254,12 @@ export function ProductCard({ product }: { product: Product }) {
   );
 }
 
-/* =========================================================
-   MAIN COMPONENT
-========================================================= */
-
 export default function SmartWatches() {
-  /* =======================================================
-     STATES
-  ======================================================= */
-
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  /* =======================================================
-     SWIPER REF
-  ======================================================= */
-
   const swiperRef = useRef<SwiperType | null>(null);
-
-  /* =======================================================
-     FETCH PRODUCTS
-  ======================================================= */
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -372,10 +306,6 @@ export default function SmartWatches() {
     fetchProducts();
   }, []);
 
-  /* =======================================================
-     LOADING
-  ======================================================= */
-
   if (loading) {
     return (
       <section className="overflow-hidden bg-[#FAF5FF] dark:bg-[#0b1325] py-16">
@@ -400,10 +330,6 @@ export default function SmartWatches() {
       </section>
     );
   }
-
-  /* =======================================================
-     ERROR
-  ======================================================= */
 
   if (error) {
     return (
@@ -440,18 +366,12 @@ export default function SmartWatches() {
     );
   }
 
-  /* =======================================================
-     EMPTY
-  ======================================================= */
-
   if (products.length === 0) {
     return (
       <section className="relative overflow-hidden bg-gradient-to-b from-[#FAF5FF] via-purple-50/30 to-white py-20 dark:from-[#0b1325] dark:via-[#0f1a32] dark:to-[#0b1325]">
-        {/* Subtle Background Glow Decorative Elements */}
         <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-purple-200/40 blur-3xl dark:bg-purple-900/20" />
 
         <div className="mx-auto max-w-[1860px] px-6 lg:px-12">
-          {/* Header Section */}
           <div className="flex flex-col items-center justify-between gap-4 border-b border-purple-100/80 pb-6 sm:flex-row sm:items-end dark:border-purple-900/30">
             <div className="space-y-2 text-center sm:text-left">
               <span className="inline-block rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-purple-700 dark:bg-purple-900/50 dark:text-purple-300">
@@ -471,7 +391,6 @@ export default function SmartWatches() {
             </Link>
           </div>
 
-          {/* Empty State / Product Area */}
           <div className="mt-12 flex min-h-[360px] flex-col items-center justify-center rounded-3xl border border-dashed border-purple-200/80 bg-white/50 p-8 text-center shadow-sm backdrop-blur-sm dark:border-purple-800/40 dark:bg-purple-950/10">
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-100 text-purple-600 shadow-inner dark:bg-purple-900/40 dark:text-purple-300">
               <Watch className="h-8 w-8 stroke-[1.5]" />
@@ -490,17 +409,9 @@ export default function SmartWatches() {
     );
   }
 
-  /* =======================================================
-     MAIN RETURN
-  ======================================================= */
-
   return (
     <section className="overflow-hidden bg-[#FAF5FF] dark:bg-[#0b1325] py-16 px-4">
       <div className="mx-auto max-w-[1860px] px-5 lg:px-8">
-        {/* =================================================
-            HEADER
-        ================================================= */}
-
         <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
           {/* TITLE */}
 
