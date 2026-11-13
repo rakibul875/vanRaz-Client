@@ -24,10 +24,6 @@ import { useRouter } from "next/navigation";
 import { Button } from "@heroui/react";
 import { useCart } from "@/context/CartContext";
 
-/* =========================================================
-   TYPES
-========================================================= */
-
 type Product = {
   _id: string;
   name: string;
@@ -51,15 +47,7 @@ type ApiResponse = {
   };
 };
 
-/* =========================================================
-   FALLBACK IMAGE
-========================================================= */
-
 const FALLBACK_IMAGE = "/placeholder.svg";
-
-/* =========================================================
-   IMAGE HELPER
-========================================================= */
 
 const getProductImage = (image?: string) => {
   if (!image) {
@@ -73,10 +61,6 @@ const getProductImage = (image?: string) => {
   return image;
 };
 
-/* =========================================================
-   OLD PRICE CALCULATION
-========================================================= */
-
 const getOldPrice = (price: number, discount?: number) => {
   if (!discount || discount <= 0 || discount >= 100) {
     return null;
@@ -85,18 +69,10 @@ const getOldPrice = (price: number, discount?: number) => {
   return price / (1 - discount / 100);
 };
 
-/* =========================================================
-   RATING STARS HELPER
-========================================================= */
-
 function getRatingStars(rating = 0) {
   const rounded = Math.round(rating);
   return Array.from({ length: 5 }, (_, index) => (index < rounded ? "★" : "☆"));
 }
-
-/* =========================================================
-   PRODUCT CARD COMPONENT
-========================================================= */
 
 function ProductCard({ product }: { product: Product }) {
   const image = getProductImage(product.images?.[0]);
@@ -138,10 +114,6 @@ function ProductCard({ product }: { product: Product }) {
       transition={{ duration: 0.2 }}
       className="group flex flex-col overflow-hidden rounded-xl border border-purple-100 bg-white p-4 shadow-sm shadow-purple-900/5 transition-shadow hover:shadow-md hover:shadow-purple-950/10"
     >
-      {/* =================================================
-          IMAGE SECTION
-      ================================================= */}
-
       <div className="relative flex h-[230px] items-center justify-center overflow-hidden rounded-lg bg-[#FAF5FF]">
         <Image
           src={image}
@@ -158,13 +130,7 @@ function ProductCard({ product }: { product: Product }) {
           </span>
         )}
 
-        {/* =================================================
-            ACTION BUTTONS (HOVER)
-        ================================================= */}
-
         <div className="absolute right-3 top-3 flex translate-x-10 flex-col gap-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-          {/* Wishlist Button */}
-
           <button
             type="button"
             aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
@@ -182,8 +148,6 @@ function ProductCard({ product }: { product: Product }) {
               <Heart size={17} className={wishlisted ? "fill-current" : ""} />
             )}
           </button>
-
-          {/* Compare Button */}
 
           <Link
             href="/compare"
@@ -205,10 +169,6 @@ function ProductCard({ product }: { product: Product }) {
         </div>
       </div>
 
-      {/* =================================================
-          CONTENT SECTION
-      ================================================= */}
-
       <div className="flex flex-1 flex-col pt-4">
         {/* PRODUCT NAME */}
 
@@ -220,10 +180,6 @@ function ProductCard({ product }: { product: Product }) {
             {product.name}
           </Link>
         </h3>
-
-        {/* =================================================
-            RATING
-        ================================================= */}
 
         <div className="mt-2 flex items-center gap-3">
           <div
@@ -238,10 +194,6 @@ function ProductCard({ product }: { product: Product }) {
           <span className="text-[13px] text-purple-400">({rating})</span>
         </div>
 
-        {/* =================================================
-            PRICE
-        ================================================= */}
-
         <div className="mt-3 flex items-center gap-2">
           <span className="text-[17px] font-bold text-purple-950">
             ${Number(product.price).toFixed(2)}
@@ -253,10 +205,6 @@ function ProductCard({ product }: { product: Product }) {
             </del>
           )}
         </div>
-
-        {/* =================================================
-            STOCK
-        ================================================= */}
 
         <div className="mt-3 flex items-center gap-1.5 text-[13px]">
           <Check
@@ -271,10 +219,6 @@ function ProductCard({ product }: { product: Product }) {
 
           {stock > 0 && <span className="text-purple-950">({stock})</span>}
         </div>
-
-        {/* =================================================
-            ADD TO CART BUTTON (With Loader & Hover Animation)
-        ================================================= */}
 
         <Button
           onClick={handleAddToCart}
@@ -314,20 +258,12 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
-/* =========================================================
-   MAIN COMPONENT
-========================================================= */
-
 export default function TrendingProducts() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   const swiperRef = useRef<SwiperType | null>(null);
-
-  /* =======================================================
-     FETCH DATA
-  ======================================================= */
 
   useEffect(() => {
     const fetchTrendingProducts = async () => {
@@ -375,10 +311,6 @@ export default function TrendingProducts() {
   return (
     <section className="overflow-hidden bg-[#FAF5FF] px-4 py-16 dark:bg-[#0b1325]">
       <div className="mx-auto max-w-[1860px] px-5 lg:px-8">
-        {/* =================================================
-            HEADER
-        ================================================= */}
-
         <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
           <div>
             <h2 className="text-center text-[26px] font-bold leading-tight text-purple-950 sm:text-left sm:text-[30px]">
@@ -400,19 +332,11 @@ export default function TrendingProducts() {
 
         <div className="mt-5 h-px w-full bg-purple-200/80" />
 
-        {/* =================================================
-            LOADING STATE
-        ================================================= */}
-
         {loading && (
           <div className="flex min-h-[300px] items-center justify-center">
             <p className="text-purple-600">Loading trending products...</p>
           </div>
         )}
-
-        {/* =================================================
-            ERROR STATE
-        ================================================= */}
 
         {!loading && error && (
           <div className="flex min-h-[300px] flex-col items-center justify-center">
@@ -427,19 +351,11 @@ export default function TrendingProducts() {
           </div>
         )}
 
-        {/* =================================================
-            EMPTY STATE
-        ================================================= */}
-
         {!loading && !error && products.length === 0 && (
           <div className="flex min-h-[300px] items-center justify-center">
             <p className="text-purple-600">No trending products found.</p>
           </div>
         )}
-
-        {/* =================================================
-            SLIDER CONTENT
-        ================================================= */}
 
         {!loading && !error && products.length > 0 && (
           <div className="relative mt-10">
