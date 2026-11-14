@@ -48,10 +48,6 @@ export default function Navbar() {
     setTheme(isDark ? "light" : "dark");
   };
 
-  // --------------------------------------------------
-  // Active route
-  // --------------------------------------------------
-
   const isActive = (path: string) => {
     if (path === "/") {
       return pathname === "/";
